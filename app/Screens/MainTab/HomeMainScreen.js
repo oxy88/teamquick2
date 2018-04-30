@@ -10,10 +10,14 @@ class HomeMainScreen extends React.Component {
             <Content>
                 <MainHeader navigation={this.props.navigation}/>
                 <H1 style={{margin: 10}}>매칭</H1>
-                <TouchableOpacity style={{height: 50, borderWidth: 1, margin: 10}}>
+                <TouchableOpacity 
+                onPress={() => this.props.navigation.navigate('UserMatching')}
+                style={{height: 50, borderWidth: 1, margin: 10}}>
                     <Text>개인 매칭</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{height: 50, borderWidth: 1, margin: 10}}>
+                <TouchableOpacity 
+                onPress={() => this.props.navigation.navigate('TeamMatching')}
+                style={{height: 50, borderWidth: 1, margin: 10}}>
                     <Text>팀 매칭</Text>
                 </TouchableOpacity>
                 <View style={{borderBottomWidth: 1, marginTop: 20, borderColor: "gray"}} />

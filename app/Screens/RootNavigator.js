@@ -40,7 +40,7 @@ import { Header, Left, Body, Right, Button, Text, Icon, Title } from 'native-bas
 import MainTab from './MainTab/MainTab'
 import LoginScreen from './AuthStack/LoginScreen'
 import AuthLoadingScreen from './AuthLoadingScreen'
-import SearchStack from './Search/SearchStack'
+import SearchMainScreen from './Search/SearchMainScreen'
 import SettingsScreen from './Settings/SettingsScreen'
 import AddStack from './Add/AddStack'
 
@@ -51,10 +51,18 @@ const AppStack = StackNavigator({
             header: null
         }
     },
-    Search: SearchStack,
+    Search: {
+        screen: SearchMainScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
     Settings: SettingsScreen,
-    Add: AddStack
+    Add: {
+        screen: AddStack
+    }
 }, {
+    headerMode: 'none',
     // transitionConfig: () => ({
     //     transitionSpec: {
     //         duration: 0,

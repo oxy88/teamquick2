@@ -4,6 +4,7 @@ import { StackNavigator } from 'react-navigation'
 
 import AddMainScreen from './AddMainScreen'
 import AddTeamScreen from './AddTeam/AddTeamScreen'
+import SelectCategoryScreen from './AddTeam/SelectCategoryScreen'
 import AddEventScreen from './AddEvent/AddEventScreen'
 
 const AddStack = StackNavigator({
@@ -12,6 +13,9 @@ const AddStack = StackNavigator({
     },
     AddTeam: {
         screen: AddTeamScreen
+    },
+    SelectCategory: {
+        screen: SelectCategoryScreen
     },
     AddEvent: {
         screen: AddEventScreen

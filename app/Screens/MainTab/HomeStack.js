@@ -6,6 +6,8 @@ import HomeMainScreen from './HomeMainScreen'
 import EventDetailsScreen from '../EventDetails/EventDetailsScreen'
 import TeamDetailsScreen from '../TeamDetails/TeamDetailsScreen'
 import UserDetailsScreen from '../UserDetails/UserDetailsScreen'
+import UserMatchingScreen from './UserMatching/UserMatchingScreen'
+import TeamMatchingScreen from './TeamMatching/TeamMatchingScreen'
 
 const HomeStack = StackNavigator({
     HomeMain: {
@@ -19,6 +21,12 @@ const HomeStack = StackNavigator({
     },
     UserDetails: {
         screen: UserDetailsScreen
+    },
+    UserMatching: {
+        screen: UserMatchingScreen
+    },
+    TeamMatching: {
+        screen: TeamMatchingScreen
     }
 }, {
     headerMode: 'none',

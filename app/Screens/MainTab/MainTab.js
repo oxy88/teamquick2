@@ -19,6 +19,7 @@ const MainTab = TabNavigator({
 }, {
     tabBarPosition: 'bottom',
     animationEnabled: false,
+    swipeEnabled: false,
     tabBarComponent: props => {
       const tabBarList = [
         {

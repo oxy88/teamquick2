@@ -1,15 +1,15 @@
 import React from 'react'
-import { TouchableOpacity, View, Text } from 'react-native'
-import { Content, H1, H2 } from 'native-base'
+import { Text, TouchableOpacity } from 'react-native'
+import { H1, H2, Content } from 'native-base'
 
-import CommonHeader from '../../../Components/CommonHeader'
+import MainHeader from '../../../Components/MainHeader'
 
-class AddEventScreen extends React.Component {
+class UserMatchingScreen extends React.Component {
     render() {
         return (
             <Content>
-                <CommonHeader navigation={this.props.navigation} />
-                <H1 style={{margin: 10}}>어떤 이벤트?</H1>
+                <MainHeader navigation={this.props.navigation} />
+                <H1 style={{margin: 10}}>개인 매칭</H1>
                 <H2 style={{margin: 10}}>게임</H2>
                 <TouchableOpacity style={{height: 50, borderWidth: 1, margin: 10}}>
                     <Text>롤</Text>
@@ -42,4 +42,4 @@ class AddEventScreen extends React.Component {
     }
 }
 
-export default AddEventScreen
+export default UserMatchingScreen
