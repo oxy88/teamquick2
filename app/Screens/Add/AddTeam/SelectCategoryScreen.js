@@ -8,8 +8,7 @@ class SelectCategoryScreen extends React.Component {
     render() {
         return (
             <Content>
-                <CommonHeader navigation={this.props.navigation} />
-                <H1 style={{margin: 10}}>주제 선택</H1>
+                <CommonHeader navigation={this.props.navigation} title="팀 주제 선택"/>
                 <H2 style={{margin: 10}}>게임</H2>
                 <TouchableOpacity 
                 onPress={() => {

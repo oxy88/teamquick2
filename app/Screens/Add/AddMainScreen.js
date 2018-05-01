@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
-import { Content, Text, Header, Left, Button, Icon } from 'native-base'
+import { Content, Text, Header, Left, Body, Title, Right, Button, Icon } from 'native-base'
 
 import CommonHeader from '../../Components/CommonHeader'
 
@@ -14,6 +14,10 @@ class AddMainScreen extends React.Component {
                             <Icon name="arrow-back" />
                         </Button>
                     </Left>
+                    <Body>
+                        <Title>만들기</Title>
+                    </Body>
+                    <Right />
                 </Header>
                 <TouchableOpacity 
                 onPress={() => this.props.navigation.navigate('AddTeam')}

@@ -4,6 +4,7 @@ import { Footer, FooterTab, Button, Icon, Text } from 'native-base'
 
 import HomeStack from './HomeStack'
 import LikeStack from './LikeStack'
+import NotificationsStack from './NotificationsStack'
 import ProfileStack from './ProfileStack'
 
 const MainTab = TabNavigator({
@@ -12,6 +13,9 @@ const MainTab = TabNavigator({
     },
     Like: {
         screen: LikeStack
+    },
+    Notifications: { 
+        screen: NotificationsStack
     },
     Profile: {
         screen: ProfileStack
@@ -36,10 +40,16 @@ const MainTab = TabNavigator({
         },
         {
           index: 2,
+          screen: "NotificationsStack",
+          icon: "notifications",
+          label: "알림",
+        },
+        {
+          index: 3,
           screen: "ProfileStack",
           icon: "person",
           label: "내 정보",
-        },
+        }, 
       ]
         return (
           <Footer>

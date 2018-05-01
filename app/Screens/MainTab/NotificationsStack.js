@@ -2,14 +2,14 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
-import HomeMainScreen from './HomeMainScreen'
+import NotificationsMainScreen from './NotificationsMainScreen'
 import EventDetailsScreen from '../EventDetails/EventDetailsScreen'
 import TeamDetailsScreen from '../TeamDetails/TeamDetailsScreen'
 import UserDetailsScreen from '../UserDetails/UserDetailsScreen'
 
-const HomeStack = StackNavigator({
-    HomeMain: {
-        screen: HomeMainScreen
+const NotificationsStack = StackNavigator({
+    NotificationsMain: {
+        screen: NotificationsMainScreen
     },
     EventDetails: {
         screen: EventDetailsScreen
@@ -19,7 +19,7 @@ const HomeStack = StackNavigator({
     },
     UserDetails: {
         screen: UserDetailsScreen
-    },
+    }
 }, {
     headerMode: 'none',
     transitionConfig: () => ({
@@ -29,4 +29,4 @@ const HomeStack = StackNavigator({
     }),
 })
 
-export default HomeStack
+export default NotificationsStack

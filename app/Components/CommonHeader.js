@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Left, Button, Icon } from 'native-base'
+import { Header, Left, Button, Icon, Body, Title, Right } from 'native-base'
 
 class CommonHeader extends React.Component {
     render() {
@@ -10,6 +10,11 @@ class CommonHeader extends React.Component {
                         <Icon name="arrow-back" />
                     </Button>
                 </Left>
+                <Body>
+                    <Title>{this.props.title ? this.props.title : ""}</Title>
+                </Body>
+                <Right>
+                </Right>
                 {/* <Body>
                     <Title>TeamQuick</Title>
                 </Body>

@@ -1,5 +1,5 @@
-# source: https://us1.prisma.sh/public-yellowpython-611/front3/dev
-# timestamp: Mon Apr 30 2018 11:01:47 GMT+0900 (KST)
+# source: http://localhost:4466/front3/dev
+# timestamp: Tue May 01 2018 10:36:19 GMT+0900 (KST)
 
 type AggregatePost {
   count: Int!
@@ -149,9 +149,6 @@ input PostSubscriptionWhereInput {
   """Logical OR on all given filters."""
   OR: [PostSubscriptionWhereInput!]
 
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [PostSubscriptionWhereInput!]
-
   """
   The subscription event gets dispatched when it's listed in mutation_in
   """
@@ -213,9 +210,6 @@ input PostWhereInput {
 
   """Logical OR on all given filters."""
   OR: [PostWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [PostWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -492,9 +486,6 @@ input UserSubscriptionWhereInput {
   """Logical OR on all given filters."""
   OR: [UserSubscriptionWhereInput!]
 
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [UserSubscriptionWhereInput!]
-
   """
   The subscription event gets dispatched when it's listed in mutation_in
   """
@@ -549,9 +540,6 @@ input UserWhereInput {
 
   """Logical OR on all given filters."""
   OR: [UserWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [UserWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""

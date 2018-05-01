@@ -21,8 +21,7 @@ class AddTeamScreen extends React.Component {
         console.log(this.props.navigation.state.params)
         return (
             <Content>
-                <CommonHeader navigation={this.props.navigation} />
-                <H1 style={{margin: 10}}>팀 만들기</H1>
+                <CommonHeader navigation={this.props.navigation} title="팀 만들기"/>
                 <H3 style={{margin: 10}}>팀 로고</H3>
                     <View style={{alignItems: 'center'}}>
                     <TouchableOpacity style={{ width: 100, height: 100, borderWidth: 1}}>
