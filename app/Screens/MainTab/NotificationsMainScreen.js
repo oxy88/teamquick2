@@ -7,8 +7,9 @@ import MainHeader from '../../Components/MainHeader'
 class NotificationsMainScreen extends React.Component {
     render() {
         return (
-            <Content>
+            <Container>
                 <MainHeader navigation={this.props.navigation}/>
+            <Content>
                     <TouchableOpacity 
                     style={{width: "90%", height: 50, margin: 10, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
                         <Text>사람1한테 귓속말왔음 : "안녕안녕"</Text>
@@ -26,6 +27,7 @@ class NotificationsMainScreen extends React.Component {
                         <Text>머시머시 이벤트에서 초대</Text>
                     </TouchableOpacity>
             </Content>
+            </Container>
         )
     }
 }

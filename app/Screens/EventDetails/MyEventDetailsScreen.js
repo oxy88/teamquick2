@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Image } from 'react-native'
-import { Container, Content, Text, Tabs, Tab, Button, ScrollableTab, H2, H3 } from 'native-base'
+import { Container, Content, Text, Tabs, Tab, Button, ScrollableTab, H2, H3, Icon } from 'native-base'
 
 import EventHeader from '../../Components/EventHeader'
 
-class EventDetailsScreen extends React.Component {
+class MyEventDetailsScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -23,12 +23,13 @@ class EventDetailsScreen extends React.Component {
                     resizeMode="stretch"
                     source={{uri: "https://a.b9.to/uploads/189/1898e01b-0796-443d-b0bc-00ee42b1c8ad.png" }} />
                 </View>
-        <Tabs scrollWithoutAnimation renderTabBar={() => <ScrollableTab />}>
+            <Tabs scrollWithoutAnimation>
                     <Tab heading="기본">
                         <Button 
                         block style={{margin: 10}}>
                             <Text>참가신청</Text>
                         </Button>
+                        <Icon name="heart">500</Icon>
                         <Text>이벤트 주최자가 쓴 설명임ㅎㅎㅎㅎ</Text>
                         <View style={{borderBottomWidth: 1, marginVertical: 20}}></View>
                         <H3 style={{margin: 10}}>시작시간</H3>
@@ -51,13 +52,27 @@ class EventDetailsScreen extends React.Component {
                     <Tab heading="대진표">
                         <Text>대진표는 시작해야 생긴당</Text>
                     </Tab>
-                    <Tab heading="참가팀">
+                    <Tab heading="참가자">
                         <Text>팀1</Text>
                         <Text>팀2</Text>
                         <Text>팀3</Text>
                     </Tab>
                     <Tab heading="기록">
                         <Text>기록</Text>
+                    </Tab>
+                    <Tab heading="관리">
+                        <Button block>
+                            <Text>이벤트 정보 편집</Text>
+                        </Button>
+                        <View style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center', marginVertical: 10}}>
+                            <Text style={{marginLeft: 10}}>이벤트 자동 참가</Text><Switch></Switch>
+                        </View>
+                        <View style={{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center', marginVertical: 10}}>
+                            <Text style={{marginLeft: 10}}>이런 저런 옵션</Text><Switch></Switch>
+                        </View>
+                        <Button warning block>
+                            <Text>이벤트 취소</Text>
+                        </Button>
                     </Tab>
                 </Tabs>
             </Content>
@@ -66,4 +81,4 @@ class EventDetailsScreen extends React.Component {
     }
 }
 
-export default EventDetailsScreen
+export default MyEventDetailsScreen

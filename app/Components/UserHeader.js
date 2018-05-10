@@ -1,11 +1,16 @@
 import React from 'react'
-import { Header, Body, Right, Title, Button, Icon } from 'native-base'
+import { Header, Left, Body, Right, Title, Button, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 
 class UserHeader extends React.Component {
     render() {
         return (
             <Header>
+                <Left>
+                    <Button transparent onPress={() => this.props.navigation.goBack()}>
+                        <Icon name="arrow-back" />
+                    </Button>
+                </Left>
                 <Body>
                     <Title>유저 이름</Title>
                 </Body>

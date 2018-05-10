@@ -1,16 +1,17 @@
 import React from 'react'
-import { View, TouchableOpacity, TextInput } from 'react-native'
+import { View, TouchableOpacity, TextInput, DatePickerAndroid } from 'react-native'
 import { Container, H1, H3, Content, Button, Text, Input, Form, Item } from 'native-base'
 
 import CommonHeader from '../../../Components/CommonHeader'
 
-class AddEventScreen extends React.Component {
+class AddScrimmageScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             category: '주제 선택',
             eventType: '유형 선택',
-            eventOptions: {}
+            eventOptions: {},
+            date: "2018-05-05"
         }
         this._setCategory = this._setCategory.bind(this)
         this._setEventType = this._setEventType.bind(this)
@@ -32,30 +33,25 @@ class AddEventScreen extends React.Component {
     render() {
         return (
             <Container>
-                <CommonHeader navigation={this.props.navigation} title="이벤트 만들기"/>
+                <CommonHeader navigation={this.props.navigation} title="연습경기 만들기"/>
             <Content>
-                <H3 style={{margin: 10}}>이벤트 이름</H3>
-                    <Input style={{backgroundColor: 'white'}} />
-                <H3 style={{margin: 10}}>이벤트 주제</H3>
+                <H3 style={{margin: 10}}>팀 선택</H3>
                     <TouchableOpacity 
                     onPress={() => this.props.navigation.navigate('SelectCategory', { _setCategory: this._setCategory })}
                     style={{backgroundColor: 'white', height: 50, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text>{this.state.category}</Text>
+                        <Text>{this.state.selectedTeam}</Text>
                     </TouchableOpacity>
-                <H3 style={{margin: 10}}>이벤트 유형</H3>
+                <H3 style={{margin: 10}}>위치</H3>
                     <TouchableOpacity 
                     onPress={() => this.props.navigation.navigate('SelectEventType', { _setEventType: this._setEventType })}
                     style={{backgroundColor: 'white', height: 50, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text>{this.state.eventType}</Text>
+                        <Text>네비게이션으로 연결</Text>
                     </TouchableOpacity>
-                <H3 style={{margin: 10}}>이벤트 설명</H3>
-                    <Input multiline style={{backgroundColor: 'white', height: 80}} />
-                <H3 style={{margin: 10}}>고급 설정</H3>
-                <TouchableOpacity 
-                    onPress={() => this.props.navigation.navigate('SelectEventOptions', { _setEventOptions: this._setEventOptions })}
+                <H3 style={{margin: 10}}>시작 시간</H3>
+                    <TouchableOpacity 
                     style={{backgroundColor: 'white', height: 50, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text>고급 설정</Text>
-                </TouchableOpacity>
+                        <Text>05/04 18:00</Text>
+                    </TouchableOpacity>
                 <Button 
                 onPress={() => this.props.navigation.navigate('App')}
                 block style={{marginTop: 10}}>
@@ -67,4 +63,4 @@ class AddEventScreen extends React.Component {
     }
 }
 
-export default AddEventScreen
+export default AddScrimmageScreen

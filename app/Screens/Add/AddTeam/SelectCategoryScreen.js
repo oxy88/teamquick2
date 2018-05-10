@@ -1,14 +1,15 @@
 import React from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
-import { Content, H1, H2 } from 'native-base'
+import { Container, Content, H1, H2 } from 'native-base'
 
 import CommonHeader from '../../../Components/CommonHeader'
 
 class SelectCategoryScreen extends React.Component {
     render() {
         return (
-            <Content>
+            <Container>
                 <CommonHeader navigation={this.props.navigation} title="팀 주제 선택"/>
+            <Content>
                 <H2 style={{margin: 10}}>게임</H2>
                 <TouchableOpacity 
                 onPress={() => {
@@ -77,6 +78,7 @@ class SelectCategoryScreen extends React.Component {
                     <Text>자유 팀</Text>
                 </TouchableOpacity>
             </Content>
+            </Container>
         )
     }
 }

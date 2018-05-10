@@ -1,13 +1,13 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
-import { Content, Text, Header, Left, Body, Title, Right, Button, Icon } from 'native-base'
+import { Container, Content, Text, Header, Left, Body, Title, Right, Button, Icon } from 'native-base'
 
 import CommonHeader from '../../Components/CommonHeader'
 
 class AddMainScreen extends React.Component {
     render() {
         return (
-            <Content>
+            <Container>
                 <Header>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.dispatch({ type: 'Navigation/BACK'})}>
@@ -19,6 +19,7 @@ class AddMainScreen extends React.Component {
                     </Body>
                     <Right />
                 </Header>
+            <Content>
                 <TouchableOpacity 
                 onPress={() => this.props.navigation.navigate('AddTeam')}
                 style={{width: 100, height: 100, borderWidth: 1}}>
@@ -29,7 +30,13 @@ class AddMainScreen extends React.Component {
                 style={{width: 100, height: 100, borderWidth: 1}}>
                     <Text>이벤트 만들기</Text>
                 </TouchableOpacity>
+                <TouchableOpacity 
+                onPress={() => this.props.navigation.navigate('AddScrimmage')}
+                style={{width: 100, height: 100, borderWidth: 1}}>
+                    <Text>연습경기 만들기</Text>
+                </TouchableOpacity>
             </Content>
+            </Container>
         )
     }
 }

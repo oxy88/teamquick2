@@ -1,14 +1,15 @@
 import React from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
-import { Content, H1, H2 } from 'native-base'
+import { Container, Content, H1, H2 } from 'native-base'
 
 import CommonHeader from '../../../Components/CommonHeader'
 
 class SelectEventTypeScreen extends React.Component {
     render() {
         return (
-            <Content>
+            <Container>
                 <CommonHeader navigation={this.props.navigation} title="이벤트 유형 선택"/>
+            <Content>
                 <TouchableOpacity 
                 onPress={() => {
                     this.props.navigation.state.params._setEventType('개인 매칭')
@@ -50,6 +51,7 @@ class SelectEventTypeScreen extends React.Component {
                     <Text>기타</Text>
                 </TouchableOpacity>
             </Content>
+            </Container>
         )
     }
 }

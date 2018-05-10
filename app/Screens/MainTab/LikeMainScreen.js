@@ -7,34 +7,35 @@ import MainHeader from '../../Components/MainHeader'
 class LikeMainScreen extends React.Component {
     render() {
         return (
-            <Content>
+            <Container>
                 <MainHeader navigation={this.props.navigation}/>
+            <Content>
                 <Tabs scrollWithoutAnimation>
                     <Tab heading="이벤트">
                         <TouchableOpacity 
                         onPress={() => this.props.navigation.navigate('EventDetails')}
                         style={{width: "90%", height: 100, margin: 10, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text>이벤트1</Text>
+                            <Text>남의 이벤트</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('GoingEventDetails')}
+                        style={{width: "90%", height: 100, margin: 10, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text>참가중인 이벤트</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
-                        onPress={() => this.props.navigation.navigate('EventDetails')}
+                        onPress={() => this.props.navigation.navigate('MyEventDetails')}
                         style={{width: "90%", height: 100, margin: 10, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text>이벤트2</Text>
+                            <Text>주최중인 이벤트</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
-                        onPress={() => this.props.navigation.navigate('EventDetails')}
+                        onPress={() => this.props.navigation.navigate('UserMatchingEventDetails')}
                         style={{width: "90%", height: 100, margin: 10, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text>이벤트3</Text>
+                            <Text>개인매칭 이벤트</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
-                        onPress={() => this.props.navigation.navigate('EventDetails')}
+                        onPress={() => this.props.navigation.navigate('OneOnOneEventDetails')}
                         style={{width: "90%", height: 100, margin: 10, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text>이벤트4</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity 
-                        onPress={() => this.props.navigation.navigate('EventDetails')}
-                        style={{width: "90%", height: 100, margin: 10, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text>이벤트5</Text>
+                            <Text>1대1팀전 이벤트</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
                         onPress={() => this.props.navigation.navigate('EventDetails')}
@@ -123,6 +124,7 @@ class LikeMainScreen extends React.Component {
                     </Tab>
                 </Tabs>
             </Content>
+            </Container>
         )
     }
 }

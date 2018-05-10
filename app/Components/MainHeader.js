@@ -1,5 +1,6 @@
 import React from 'react'
-import { Header, Body, Right, Title, Button, Icon } from 'native-base'
+import { TouchableOpacity } from 'react-native'
+import { Container, Header, Body, Right, Title, Button, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 
 class MainHeader extends React.Component {

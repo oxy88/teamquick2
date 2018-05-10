@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import { Content, Text, H1, H3, Header, Left, Button, Icon, Body, Title, Right, Form, Picker, Item } from 'native-base'
+import { Container, Content, Text, H1, H3, Header, Left, Button, Icon, Body, Title, Right, Form, Picker, Item } from 'native-base'
 
 class TeamMatchingScreen extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class TeamMatchingScreen extends React.Component {
 
     render() {
         return (
-            <Content>
+            <Container>
                 <Header>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.dispatch({ type: 'Navigation/BACK'})}>
@@ -31,6 +31,7 @@ class TeamMatchingScreen extends React.Component {
                     </Body>
                     <Right />
                 </Header>
+            <Content>
                 <H3 style={{margin: 10}}>팀 선택</H3>
             <Form>
             <Picker
@@ -71,6 +72,7 @@ class TeamMatchingScreen extends React.Component {
                     <Text>선택된 팀에 적합한 팀 매칭 추천3</Text>
           </TouchableOpacity>
         </Content>
+        </Container>
         )
     }
 }

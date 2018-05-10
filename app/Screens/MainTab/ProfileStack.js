@@ -3,13 +3,22 @@ import { View, Text } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
 import ProfileMainScreen from './ProfileMainScreen'
+import DirectMessageListScreen from './ProfileStack/DirectMessageListScreen'
 import EventDetailsScreen from '../EventDetails/EventDetailsScreen'
 import TeamDetailsScreen from '../TeamDetails/TeamDetailsScreen'
+import MyTeamDetailsScreen from '../TeamDetails/MyTeamDetailsScreen'
 import UserDetailsScreen from '../UserDetails/UserDetailsScreen'
+import EditIntroductionScreen from './ProfileStack/EditIntroductionScreen'
 
 const ProfileStack = StackNavigator({
     ProfileMain: {
         screen: ProfileMainScreen
+    },
+    DirectMessageList: {
+        screen: DirectMessageListScreen
+    },
+    EditIntroduction: {
+        screen: EditIntroductionScreen
     },
     EventDetails: {
         screen: EventDetailsScreen
@@ -17,9 +26,12 @@ const ProfileStack = StackNavigator({
     TeamDetails: {
         screen: TeamDetailsScreen
     },
+    MyTeamDetails: {
+        screen: MyTeamDetailsScreen
+    },
     UserDetails: {
         screen: UserDetailsScreen
-    }
+    },
 }, {
     headerMode: 'none',
     transitionConfig: () => ({

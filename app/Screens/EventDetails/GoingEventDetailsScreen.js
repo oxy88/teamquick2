@@ -4,7 +4,7 @@ import { Container, Content, Text, Tabs, Tab, Button, ScrollableTab, H2, H3 } fr
 
 import EventHeader from '../../Components/EventHeader'
 
-class EventDetailsScreen extends React.Component {
+class GoingEventDetailsScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -51,7 +51,7 @@ class EventDetailsScreen extends React.Component {
                     <Tab heading="대진표">
                         <Text>대진표는 시작해야 생긴당</Text>
                     </Tab>
-                    <Tab heading="참가팀">
+                    <Tab heading="참가자">
                         <Text>팀1</Text>
                         <Text>팀2</Text>
                         <Text>팀3</Text>
@@ -66,4 +66,4 @@ class EventDetailsScreen extends React.Component {
     }
 }
 
-export default EventDetailsScreen
+export default GoingEventDetailsScreen

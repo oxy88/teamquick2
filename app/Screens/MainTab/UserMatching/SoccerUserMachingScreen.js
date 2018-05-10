@@ -1,13 +1,14 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
-import { Content, Text, Right, Icon } from 'native-base'
+import { Container, Content, Text, Right, Icon } from 'native-base'
 import CommonHeader from '../../../Components/CommonHeader'
 
 class SoccerUserMatchingScreen extends React.Component {
     render() {
         return (
-            <Content>
+            <Container>
                 <CommonHeader navigation={this.props.navigation} title="축구/풋살 개인"/>
+            <Content>
                 <View style={{paddingHorizontal: 20, flexDirection: "row", backgroundColor: 'white', height: 50, alignItems: 'center', justifyContent: 'center'}}>
                     <Text>지금 설정된 필터 같은 느낌</Text>
                     <Right>
@@ -32,6 +33,7 @@ class SoccerUserMatchingScreen extends React.Component {
                     <Text note>5/3 20:00 서울시 용산구 어쩌구길</Text>
                 </TouchableOpacity>
             </Content>
+            </Container>
         )
     }
 }

@@ -1,13 +1,18 @@
 import React from 'react'
-import { Header, Body, Right, Title, Button, Icon } from 'native-base'
+import { Header, Left, Body, Right, Title, Button, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 
 class EventHeader extends React.Component {
     render() {
         return (
             <Header>
+                <Left>
+                    <Button transparent onPress={() => this.props.navigation.goBack()}>
+                        <Icon name="arrow-back" />
+                    </Button>
+                </Left>
                 <Body>
-                    <Title>이벤트 이름</Title>
+                    <Title>{this.props.title ? this.props.title : "이벤트 이름"}</Title>
                 </Body>
                 <Right>
                     <Button transparent onPress={() => this.props.navigation.navigate('Search')}>

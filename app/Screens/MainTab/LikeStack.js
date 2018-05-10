@@ -4,6 +4,10 @@ import { StackNavigator } from 'react-navigation'
 
 import LikeMainScreen from './LikeMainScreen'
 import EventDetailsScreen from '../EventDetails/EventDetailsScreen'
+import MyEventDetailsScreen from '../EventDetails/MyEventDetailsScreen'
+import GoingEventDetailsScreen from '../EventDetails/GoingEventDetailsScreen'
+import UserMatchingEventDetailsScreen from '../EventDetails/UserMatchingEventDetailsScreen'
+import OneOnOneEventDetailsScreen from '../EventDetails/OneOnOneEventDetailsScreen'
 import TeamDetailsScreen from '../TeamDetails/TeamDetailsScreen'
 import UserDetailsScreen from '../UserDetails/UserDetailsScreen'
 
@@ -13,6 +17,18 @@ const LikeStack = StackNavigator({
     },
     EventDetails: {
         screen: EventDetailsScreen
+    },
+    MyEventDetails: {
+        screen: MyEventDetailsScreen
+    },
+    GoingEventDetails: {
+        screen: GoingEventDetailsScreen
+    },
+    UserMatchingEventDetails: {
+        screen: UserMatchingEventDetailsScreen
+    },
+    OneOnOneEventDetails: {
+        screen: OneOnOneEventDetailsScreen
     },
     TeamDetails: {
         screen: TeamDetailsScreen

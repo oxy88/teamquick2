@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, TouchableOpacity, TextInput } from 'react-native'
-import { H1, H3, Content, Button, Text, Input, Form, Item } from 'native-base'
+import { Container, H1, H3, Content, Button, Text, Input, Form, Item } from 'native-base'
 
 import CommonHeader from '../../../Components/CommonHeader'
 
@@ -15,13 +15,13 @@ class AddTeamScreen extends React.Component {
 
     _setCategory(category) {
         this.setState({ category })
-    }
 
+    }
     render() {
-        console.log(this.props.navigation.state.params)
         return (
-            <Content>
+            <Container>
                 <CommonHeader navigation={this.props.navigation} title="팀 만들기"/>
+            <Content>
                 <H3 style={{margin: 10}}>팀 로고</H3>
                     <View style={{alignItems: 'center'}}>
                     <TouchableOpacity style={{ width: 100, height: 100, borderWidth: 1}}>
@@ -44,6 +44,7 @@ class AddTeamScreen extends React.Component {
                     <Text>만들기</Text>
                 </Button>
             </Content>
+            </Container>
         )
     }
 }
