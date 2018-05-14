@@ -24,7 +24,7 @@ class SettingsScreen extends React.Component {
             <Container>
                 <CommonHeader navigation={this.props.navigation} />
                 <Text>SettingsScreen</Text>
-                <Text>내 이름 : {data.myName}</Text>
+                <Text>내 이름 : {data && data.myName ? data.myName : "알 수 없음"}</Text>
                 <Button onPress={async() => {
                     await AsyncStorage.removeItem(TOKEN)
                     client.resetStore()

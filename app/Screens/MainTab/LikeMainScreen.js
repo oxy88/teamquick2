@@ -12,6 +12,10 @@ import UserList from '../../Components/User/UserList'
 import LoadingScreen from '../SystemScreens/LoadingScreen'
 import ErrorScreen from '../SystemScreens/ErrorScreen'
 
+import EVENTS_QUERY from '../../Query/EVENTS_QUERY'
+import TEAMS_QUERY from '../../Query/TEAMS_QUERY'
+import USERS_QUERY from '../../Query/USERS_QUERY'
+
 class LikeMainScreen extends React.Component {
     render() {
         return (
@@ -79,38 +83,5 @@ class LikeMainScreen extends React.Component {
         )
     }
 }
-
-const EVENTS_QUERY = gql`
-query events_query {
-    events {
-        id
-        name
-        iconUrl
-    }
-}
-`
-
-const TEAMS_QUERY = gql`
-query teams_query {
-    teams {
-        id
-        name
-        logoUrl
-        members {
-            id
-            name
-        }
-    }
-}
-`
-
-const USERS_QUERY = gql`
-query users_query {
-    users {
-        id
-        name
-    }
-}
-`
 
 export default LikeMainScreen

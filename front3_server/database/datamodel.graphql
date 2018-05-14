@@ -2,11 +2,15 @@ type User {
   id: ID! @unique
   name: String @unique
   teams: [Team!]! @relation(name: "UsersTeams")
+  events: [Event!]! @relation(name: "UserEvents")
+  avatarUrl: String @default(value: "https://image.flaticon.com/icons/svg/0/93.svg")
 }
 
 type Team {
   id: ID! @unique
+  category: Category
   name: String
+  description: String
   members: [User!]! @relation(name: "UsersTeams")
   logoUrl: String @default(value: "https://d30y9cdsu7xlg0.cloudfront.net/png/14261-200.png")
 }
@@ -15,14 +19,26 @@ type Event {
   id: ID! @unique
   name: String
   iconUrl: String @default(value: "https://d30y9cdsu7xlg0.cloudfront.net/png/404-200.png")
+  category: Category @default(value: ANYTHING)
+  type: EventType @default(value: ETC)
+  startTime: DateTime
+  place: String @default(value: "온라인")
+  owner: User @relation(name: "UserEvents")
 }
 
 enum Category {
   LOL
   PUBG
   OVERWATCH
-  ETC_GAME
+  ETC_GAMES
   SOCCER
   BASKET_BALL
   ETC_SPORTS
+  ANY
+}
+
+enum EventType {
+  TOURNAMENT
+  LEAGUE
+  ETC
 }

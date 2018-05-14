@@ -4,10 +4,14 @@ import { H1, H2, Container, Content, Text } from 'native-base'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
+import I18n from '../../i18n/i18n'
+
 import MainHeader from '../../Components/MainHeader'
 import EventList from '../../Components/Event/EventList'
 import LoadingScreen from '../SystemScreens/LoadingScreen'
 import ErrorScreen from '../SystemScreens/ErrorScreen'
+
+import EVENTS_QUERY from '../../Query/EVENTS_QUERY'
 
 class HomeMainScreen extends React.Component {
     constructor(props) {
@@ -98,15 +102,5 @@ class HomeMainScreen extends React.Component {
         )
     }
 }
-
-const EVENTS_QUERY = gql`
-query eventsQuery {
-    events {
-        id
-        name
-        iconUrl
-    }
-}
-`
 
 export default HomeMainScreen

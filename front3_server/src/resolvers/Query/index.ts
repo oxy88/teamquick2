@@ -24,5 +24,5 @@ export default {
         name
         }`)
         return user.name
-    }
+    },
 }

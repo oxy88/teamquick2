@@ -14,7 +14,7 @@ class TeamList extends React.Component {
                 <Image source={{ uri: team.logoUrl }} style={{width: 40, height:40}} />
                 <View>
                     <Text>{team.name}</Text>
-                    <Text>팀 설명</Text>
+                    <Text>{team.description}</Text>
                     <Text>팀 설명2</Text>
                 </View>
             </TouchableOpacity>

@@ -21,10 +21,28 @@ type BatchPayload {
   count: Long!
 }
 
+enum Category {
+  LOL
+  PUBG
+  OVERWATCH
+  ETC_GAME
+  SOCCER
+  BASKET_BALL
+  ETC_SPORTS
+  ANYTHING
+}
+
+scalar DateTime
+
 type Event implements Node {
   id: ID!
   name: String
   iconUrl: String
+  category: Category
+  type: EventType
+  startTime: DateTime
+  place: String
+  owner(where: UserWhereInput): User
 }
 
 """
@@ -45,6 +63,25 @@ type EventConnection {
 input EventCreateInput {
   name: String
   iconUrl: String
+  category: Category
+  type: EventType
+  startTime: DateTime
+  place: String
+  owner: UserCreateOneWithoutEventsInput
+}
+
+input EventCreateManyWithoutOwnerInput {
+  create: [EventCreateWithoutOwnerInput!]
+  connect: [EventWhereUniqueInput!]
+}
+
+input EventCreateWithoutOwnerInput {
+  name: String
+  iconUrl: String
+  category: Category
+  type: EventType
+  startTime: DateTime
+  place: String
 }
 
 """
@@ -68,6 +105,14 @@ enum EventOrderByInput {
   name_DESC
   iconUrl_ASC
   iconUrl_DESC
+  category_ASC
+  category_DESC
+  type_ASC
+  type_DESC
+  startTime_ASC
+  startTime_DESC
+  place_ASC
+  place_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -78,6 +123,10 @@ type EventPreviousValues {
   id: ID!
   name: String
   iconUrl: String
+  category: Category
+  type: EventType
+  startTime: DateTime
+  place: String
 }
 
 type EventSubscriptionPayload {
@@ -119,9 +168,49 @@ input EventSubscriptionWhereInput {
   node: EventWhereInput
 }
 
+enum EventType {
+  TOURNAMENT
+  LEAGUE
+  ETC
+}
+
 input EventUpdateInput {
   name: String
   iconUrl: String
+  category: Category
+  type: EventType
+  startTime: DateTime
+  place: String
+  owner: UserUpdateOneWithoutEventsInput
+}
+
+input EventUpdateManyWithoutOwnerInput {
+  create: [EventCreateWithoutOwnerInput!]
+  connect: [EventWhereUniqueInput!]
+  disconnect: [EventWhereUniqueInput!]
+  delete: [EventWhereUniqueInput!]
+  update: [EventUpdateWithWhereUniqueWithoutOwnerInput!]
+  upsert: [EventUpsertWithWhereUniqueWithoutOwnerInput!]
+}
+
+input EventUpdateWithoutOwnerDataInput {
+  name: String
+  iconUrl: String
+  category: Category
+  type: EventType
+  startTime: DateTime
+  place: String
+}
+
+input EventUpdateWithWhereUniqueWithoutOwnerInput {
+  where: EventWhereUniqueInput!
+  data: EventUpdateWithoutOwnerDataInput!
+}
+
+input EventUpsertWithWhereUniqueWithoutOwnerInput {
+  where: EventWhereUniqueInput!
+  update: EventUpdateWithoutOwnerDataInput!
+  create: EventCreateWithoutOwnerInput!
 }
 
 input EventWhereInput {
@@ -296,6 +385,115 @@ input EventWhereInput {
   All values not ending with the given string.
   """
   iconUrl_not_ends_with: String
+  category: Category
+  """
+  All values that are not equal to given value.
+  """
+  category_not: Category
+  """
+  All values that are contained in given list.
+  """
+  category_in: [Category!]
+  """
+  All values that are not contained in given list.
+  """
+  category_not_in: [Category!]
+  type: EventType
+  """
+  All values that are not equal to given value.
+  """
+  type_not: EventType
+  """
+  All values that are contained in given list.
+  """
+  type_in: [EventType!]
+  """
+  All values that are not contained in given list.
+  """
+  type_not_in: [EventType!]
+  startTime: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  startTime_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  startTime_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  startTime_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  startTime_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  startTime_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  startTime_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  startTime_gte: DateTime
+  place: String
+  """
+  All values that are not equal to given value.
+  """
+  place_not: String
+  """
+  All values that are contained in given list.
+  """
+  place_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
+  place_not_in: [String!]
+  """
+  All values less than the given value.
+  """
+  place_lt: String
+  """
+  All values less than or equal the given value.
+  """
+  place_lte: String
+  """
+  All values greater than the given value.
+  """
+  place_gt: String
+  """
+  All values greater than or equal the given value.
+  """
+  place_gte: String
+  """
+  All values containing the given string.
+  """
+  place_contains: String
+  """
+  All values not containing the given string.
+  """
+  place_not_contains: String
+  """
+  All values starting with the given string.
+  """
+  place_starts_with: String
+  """
+  All values not starting with the given string.
+  """
+  place_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
+  place_ends_with: String
+  """
+  All values not ending with the given string.
+  """
+  place_not_ends_with: String
+  owner: UserWhereInput
 }
 
 input EventWhereUniqueInput {
@@ -348,7 +546,9 @@ type PageInfo {
 
 type Team implements Node {
   id: ID!
+  category: Category
   name: String
+  description: String
   members(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   logoUrl: String
 }
@@ -369,7 +569,9 @@ type TeamConnection {
 }
 
 input TeamCreateInput {
+  category: Category
   name: String
+  description: String
   logoUrl: String
   members: UserCreateManyWithoutTeamsInput
 }
@@ -380,7 +582,9 @@ input TeamCreateManyWithoutMembersInput {
 }
 
 input TeamCreateWithoutMembersInput {
+  category: Category
   name: String
+  description: String
   logoUrl: String
 }
 
@@ -401,8 +605,12 @@ type TeamEdge {
 enum TeamOrderByInput {
   id_ASC
   id_DESC
+  category_ASC
+  category_DESC
   name_ASC
   name_DESC
+  description_ASC
+  description_DESC
   logoUrl_ASC
   logoUrl_DESC
   updatedAt_ASC
@@ -413,7 +621,9 @@ enum TeamOrderByInput {
 
 type TeamPreviousValues {
   id: ID!
+  category: Category
   name: String
+  description: String
   logoUrl: String
 }
 
@@ -457,7 +667,9 @@ input TeamSubscriptionWhereInput {
 }
 
 input TeamUpdateInput {
+  category: Category
   name: String
+  description: String
   logoUrl: String
   members: UserUpdateManyWithoutTeamsInput
 }
@@ -472,7 +684,9 @@ input TeamUpdateManyWithoutMembersInput {
 }
 
 input TeamUpdateWithoutMembersDataInput {
+  category: Category
   name: String
+  description: String
   logoUrl: String
 }
 
@@ -553,6 +767,19 @@ input TeamWhereInput {
   All values not ending with the given string.
   """
   id_not_ends_with: ID
+  category: Category
+  """
+  All values that are not equal to given value.
+  """
+  category_not: Category
+  """
+  All values that are contained in given list.
+  """
+  category_in: [Category!]
+  """
+  All values that are not contained in given list.
+  """
+  category_not_in: [Category!]
   name: String
   """
   All values that are not equal to given value.
@@ -606,6 +833,59 @@ input TeamWhereInput {
   All values not ending with the given string.
   """
   name_not_ends_with: String
+  description: String
+  """
+  All values that are not equal to given value.
+  """
+  description_not: String
+  """
+  All values that are contained in given list.
+  """
+  description_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
+  description_not_in: [String!]
+  """
+  All values less than the given value.
+  """
+  description_lt: String
+  """
+  All values less than or equal the given value.
+  """
+  description_lte: String
+  """
+  All values greater than the given value.
+  """
+  description_gt: String
+  """
+  All values greater than or equal the given value.
+  """
+  description_gte: String
+  """
+  All values containing the given string.
+  """
+  description_contains: String
+  """
+  All values not containing the given string.
+  """
+  description_not_contains: String
+  """
+  All values starting with the given string.
+  """
+  description_starts_with: String
+  """
+  All values not starting with the given string.
+  """
+  description_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
+  description_ends_with: String
+  """
+  All values not ending with the given string.
+  """
+  description_not_ends_with: String
   logoUrl: String
   """
   All values that are not equal to given value.
@@ -672,6 +952,7 @@ type User implements Node {
   id: ID!
   name: String
   teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team!]
+  events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event!]
 }
 
 """
@@ -692,6 +973,7 @@ type UserConnection {
 input UserCreateInput {
   name: String
   teams: TeamCreateManyWithoutMembersInput
+  events: EventCreateManyWithoutOwnerInput
 }
 
 input UserCreateManyWithoutTeamsInput {
@@ -699,8 +981,19 @@ input UserCreateManyWithoutTeamsInput {
   connect: [UserWhereUniqueInput!]
 }
 
+input UserCreateOneWithoutEventsInput {
+  create: UserCreateWithoutEventsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutEventsInput {
+  name: String
+  teams: TeamCreateManyWithoutMembersInput
+}
+
 input UserCreateWithoutTeamsInput {
   name: String
+  events: EventCreateManyWithoutOwnerInput
 }
 
 """
@@ -775,6 +1068,7 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   name: String
   teams: TeamUpdateManyWithoutMembersInput
+  events: EventUpdateManyWithoutOwnerInput
 }
 
 input UserUpdateManyWithoutTeamsInput {
@@ -786,13 +1080,33 @@ input UserUpdateManyWithoutTeamsInput {
   upsert: [UserUpsertWithWhereUniqueWithoutTeamsInput!]
 }
 
+input UserUpdateOneWithoutEventsInput {
+  create: UserCreateWithoutEventsInput
+  connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserUpdateWithoutEventsDataInput
+  upsert: UserUpsertWithoutEventsInput
+}
+
+input UserUpdateWithoutEventsDataInput {
+  name: String
+  teams: TeamUpdateManyWithoutMembersInput
+}
+
 input UserUpdateWithoutTeamsDataInput {
   name: String
+  events: EventUpdateManyWithoutOwnerInput
 }
 
 input UserUpdateWithWhereUniqueWithoutTeamsInput {
   where: UserWhereUniqueInput!
   data: UserUpdateWithoutTeamsDataInput!
+}
+
+input UserUpsertWithoutEventsInput {
+  update: UserUpdateWithoutEventsDataInput!
+  create: UserCreateWithoutEventsInput!
 }
 
 input UserUpsertWithWhereUniqueWithoutTeamsInput {
@@ -923,6 +1237,9 @@ input UserWhereInput {
   teams_every: TeamWhereInput
   teams_some: TeamWhereInput
   teams_none: TeamWhereInput
+  events_every: EventWhereInput
+  events_some: EventWhereInput
+  events_none: EventWhereInput
 }
 
 input UserWhereUniqueInput {
@@ -977,18 +1294,6 @@ type Subscription {
 }
 `
 
-export type TeamOrderByInput = 
-  'id_ASC' |
-  'id_DESC' |
-  'name_ASC' |
-  'name_DESC' |
-  'logoUrl_ASC' |
-  'logoUrl_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
-  'createdAt_ASC' |
-  'createdAt_DESC'
-
 export type UserOrderByInput = 
   'id_ASC' |
   'id_DESC' |
@@ -999,6 +1304,37 @@ export type UserOrderByInput =
   'createdAt_ASC' |
   'createdAt_DESC'
 
+export type EventType = 
+  'TOURNAMENT' |
+  'LEAGUE' |
+  'ETC'
+
+export type TeamOrderByInput = 
+  'id_ASC' |
+  'id_DESC' |
+  'category_ASC' |
+  'category_DESC' |
+  'name_ASC' |
+  'name_DESC' |
+  'description_ASC' |
+  'description_DESC' |
+  'logoUrl_ASC' |
+  'logoUrl_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC'
+
+export type Category = 
+  'LOL' |
+  'PUBG' |
+  'OVERWATCH' |
+  'ETC_GAME' |
+  'SOCCER' |
+  'BASKET_BALL' |
+  'ETC_SPORTS' |
+  'ANYTHING'
+
 export type EventOrderByInput = 
   'id_ASC' |
   'id_DESC' |
@@ -1006,6 +1342,14 @@ export type EventOrderByInput =
   'name_DESC' |
   'iconUrl_ASC' |
   'iconUrl_DESC' |
+  'category_ASC' |
+  'category_DESC' |
+  'type_ASC' |
+  'type_DESC' |
+  'startTime_ASC' |
+  'startTime_DESC' |
+  'place_ASC' |
+  'place_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
@@ -1016,9 +1360,12 @@ export type MutationType =
   'UPDATED' |
   'DELETED'
 
-export interface TeamCreateManyWithoutMembersInput {
-  create?: TeamCreateWithoutMembersInput[] | TeamCreateWithoutMembersInput
-  connect?: TeamWhereUniqueInput[] | TeamWhereUniqueInput
+export interface TeamCreateInput {
+  category?: Category
+  name?: String
+  description?: String
+  logoUrl?: String
+  members?: UserCreateManyWithoutTeamsInput
 }
 
 export interface UserWhereInput {
@@ -1056,36 +1403,43 @@ export interface UserWhereInput {
   teams_every?: TeamWhereInput
   teams_some?: TeamWhereInput
   teams_none?: TeamWhereInput
-}
-
-export interface UserUpdateManyWithoutTeamsInput {
-  create?: UserCreateWithoutTeamsInput[] | UserCreateWithoutTeamsInput
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput
-  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput
-  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput
-  update?: UserUpdateWithWhereUniqueWithoutTeamsInput[] | UserUpdateWithWhereUniqueWithoutTeamsInput
-  upsert?: UserUpsertWithWhereUniqueWithoutTeamsInput[] | UserUpsertWithWhereUniqueWithoutTeamsInput
-}
-
-export interface UserCreateWithoutTeamsInput {
-  name?: String
+  events_every?: EventWhereInput
+  events_some?: EventWhereInput
+  events_none?: EventWhereInput
 }
 
 export interface TeamUpdateInput {
+  category?: Category
   name?: String
+  description?: String
   logoUrl?: String
   members?: UserUpdateManyWithoutTeamsInput
-}
-
-export interface UserCreateManyWithoutTeamsInput {
-  create?: UserCreateWithoutTeamsInput[] | UserCreateWithoutTeamsInput
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput
 }
 
 export interface TeamUpsertWithWhereUniqueWithoutMembersInput {
   where: TeamWhereUniqueInput
   update: TeamUpdateWithoutMembersDataInput
   create: TeamCreateWithoutMembersInput
+}
+
+export interface EventUpsertWithWhereUniqueWithoutOwnerInput {
+  where: EventWhereUniqueInput
+  update: EventUpdateWithoutOwnerDataInput
+  create: EventCreateWithoutOwnerInput
+}
+
+export interface UserCreateOneWithoutEventsInput {
+  create?: UserCreateWithoutEventsInput
+  connect?: UserWhereUniqueInput
+}
+
+export interface EventUpdateWithoutOwnerDataInput {
+  name?: String
+  iconUrl?: String
+  category?: Category
+  type?: EventType
+  startTime?: DateTime
+  place?: String
 }
 
 export interface TeamSubscriptionWhereInput {
@@ -1099,9 +1453,102 @@ export interface TeamSubscriptionWhereInput {
   node?: TeamWhereInput
 }
 
-export interface TeamUpdateWithoutMembersDataInput {
+export interface UserCreateInput {
   name?: String
+  teams?: TeamCreateManyWithoutMembersInput
+  events?: EventCreateManyWithoutOwnerInput
+}
+
+export interface UserSubscriptionWhereInput {
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: UserWhereInput
+}
+
+export interface TeamCreateManyWithoutMembersInput {
+  create?: TeamCreateWithoutMembersInput[] | TeamCreateWithoutMembersInput
+  connect?: TeamWhereUniqueInput[] | TeamWhereUniqueInput
+}
+
+export interface TeamWhereUniqueInput {
+  id?: ID_Input
+}
+
+export interface TeamCreateWithoutMembersInput {
+  category?: Category
+  name?: String
+  description?: String
   logoUrl?: String
+}
+
+export interface UserUpsertWithoutEventsInput {
+  update: UserUpdateWithoutEventsDataInput
+  create: UserCreateWithoutEventsInput
+}
+
+export interface EventCreateManyWithoutOwnerInput {
+  create?: EventCreateWithoutOwnerInput[] | EventCreateWithoutOwnerInput
+  connect?: EventWhereUniqueInput[] | EventWhereUniqueInput
+}
+
+export interface UserUpdateOneWithoutEventsInput {
+  create?: UserCreateWithoutEventsInput
+  connect?: UserWhereUniqueInput
+  disconnect?: Boolean
+  delete?: Boolean
+  update?: UserUpdateWithoutEventsDataInput
+  upsert?: UserUpsertWithoutEventsInput
+}
+
+export interface EventCreateWithoutOwnerInput {
+  name?: String
+  iconUrl?: String
+  category?: Category
+  type?: EventType
+  startTime?: DateTime
+  place?: String
+}
+
+export interface UserUpsertWithWhereUniqueWithoutTeamsInput {
+  where: UserWhereUniqueInput
+  update: UserUpdateWithoutTeamsDataInput
+  create: UserCreateWithoutTeamsInput
+}
+
+export interface EventUpdateWithWhereUniqueWithoutOwnerInput {
+  where: EventWhereUniqueInput
+  data: EventUpdateWithoutOwnerDataInput
+}
+
+export interface UserUpdateWithWhereUniqueWithoutTeamsInput {
+  where: UserWhereUniqueInput
+  data: UserUpdateWithoutTeamsDataInput
+}
+
+export interface UserCreateManyWithoutTeamsInput {
+  create?: UserCreateWithoutTeamsInput[] | UserCreateWithoutTeamsInput
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput
+}
+
+export interface EventSubscriptionWhereInput {
+  AND?: EventSubscriptionWhereInput[] | EventSubscriptionWhereInput
+  OR?: EventSubscriptionWhereInput[] | EventSubscriptionWhereInput
+  NOT?: EventSubscriptionWhereInput[] | EventSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: EventWhereInput
+}
+
+export interface UserCreateWithoutTeamsInput {
+  name?: String
+  events?: EventCreateManyWithoutOwnerInput
 }
 
 export interface TeamWhereInput {
@@ -1122,6 +1569,10 @@ export interface TeamWhereInput {
   id_not_starts_with?: ID_Input
   id_ends_with?: ID_Input
   id_not_ends_with?: ID_Input
+  category?: Category
+  category_not?: Category
+  category_in?: Category[] | Category
+  category_not_in?: Category[] | Category
   name?: String
   name_not?: String
   name_in?: String[] | String
@@ -1136,6 +1587,20 @@ export interface TeamWhereInput {
   name_not_starts_with?: String
   name_ends_with?: String
   name_not_ends_with?: String
+  description?: String
+  description_not?: String
+  description_in?: String[] | String
+  description_not_in?: String[] | String
+  description_lt?: String
+  description_lte?: String
+  description_gt?: String
+  description_gte?: String
+  description_contains?: String
+  description_not_contains?: String
+  description_starts_with?: String
+  description_not_starts_with?: String
+  description_ends_with?: String
+  description_not_ends_with?: String
   logoUrl?: String
   logoUrl_not?: String
   logoUrl_in?: String[] | String
@@ -1155,14 +1620,63 @@ export interface TeamWhereInput {
   members_none?: UserWhereInput
 }
 
+export interface EventCreateInput {
+  name?: String
+  iconUrl?: String
+  category?: Category
+  type?: EventType
+  startTime?: DateTime
+  place?: String
+  owner?: UserCreateOneWithoutEventsInput
+}
+
+export interface EventWhereUniqueInput {
+  id?: ID_Input
+}
+
+export interface EventUpdateManyWithoutOwnerInput {
+  create?: EventCreateWithoutOwnerInput[] | EventCreateWithoutOwnerInput
+  connect?: EventWhereUniqueInput[] | EventWhereUniqueInput
+  disconnect?: EventWhereUniqueInput[] | EventWhereUniqueInput
+  delete?: EventWhereUniqueInput[] | EventWhereUniqueInput
+  update?: EventUpdateWithWhereUniqueWithoutOwnerInput[] | EventUpdateWithWhereUniqueWithoutOwnerInput
+  upsert?: EventUpsertWithWhereUniqueWithoutOwnerInput[] | EventUpsertWithWhereUniqueWithoutOwnerInput
+}
+
+export interface EventUpdateInput {
+  name?: String
+  iconUrl?: String
+  category?: Category
+  type?: EventType
+  startTime?: DateTime
+  place?: String
+  owner?: UserUpdateOneWithoutEventsInput
+}
+
+export interface UserCreateWithoutEventsInput {
+  name?: String
+  teams?: TeamCreateManyWithoutMembersInput
+}
+
+export interface UserUpdateManyWithoutTeamsInput {
+  create?: UserCreateWithoutTeamsInput[] | UserCreateWithoutTeamsInput
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput
+  update?: UserUpdateWithWhereUniqueWithoutTeamsInput[] | UserUpdateWithWhereUniqueWithoutTeamsInput
+  upsert?: UserUpsertWithWhereUniqueWithoutTeamsInput[] | UserUpsertWithWhereUniqueWithoutTeamsInput
+}
+
+export interface TeamUpdateWithoutMembersDataInput {
+  category?: Category
+  name?: String
+  description?: String
+  logoUrl?: String
+}
+
 export interface TeamUpdateWithWhereUniqueWithoutMembersInput {
   where: TeamWhereUniqueInput
   data: TeamUpdateWithoutMembersDataInput
-}
-
-export interface UserWhereUniqueInput {
-  id?: ID_Input
-  name?: String
 }
 
 export interface TeamUpdateManyWithoutMembersInput {
@@ -1174,29 +1688,10 @@ export interface TeamUpdateManyWithoutMembersInput {
   upsert?: TeamUpsertWithWhereUniqueWithoutMembersInput[] | TeamUpsertWithWhereUniqueWithoutMembersInput
 }
 
-export interface EventWhereUniqueInput {
-  id?: ID_Input
-}
-
 export interface UserUpdateInput {
   name?: String
   teams?: TeamUpdateManyWithoutMembersInput
-}
-
-export interface UserUpsertWithWhereUniqueWithoutTeamsInput {
-  where: UserWhereUniqueInput
-  update: UserUpdateWithoutTeamsDataInput
-  create: UserCreateWithoutTeamsInput
-}
-
-export interface UserCreateInput {
-  name?: String
-  teams?: TeamCreateManyWithoutMembersInput
-}
-
-export interface UserUpdateWithWhereUniqueWithoutTeamsInput {
-  where: UserWhereUniqueInput
-  data: UserUpdateWithoutTeamsDataInput
+  events?: EventUpdateManyWithoutOwnerInput
 }
 
 export interface EventWhereInput {
@@ -1245,57 +1740,52 @@ export interface EventWhereInput {
   iconUrl_not_starts_with?: String
   iconUrl_ends_with?: String
   iconUrl_not_ends_with?: String
-}
-
-export interface TeamCreateInput {
-  name?: String
-  logoUrl?: String
-  members?: UserCreateManyWithoutTeamsInput
-}
-
-export interface TeamCreateWithoutMembersInput {
-  name?: String
-  logoUrl?: String
-}
-
-export interface EventCreateInput {
-  name?: String
-  iconUrl?: String
-}
-
-export interface UserSubscriptionWhereInput {
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: UserWhereInput
-}
-
-export interface EventSubscriptionWhereInput {
-  AND?: EventSubscriptionWhereInput[] | EventSubscriptionWhereInput
-  OR?: EventSubscriptionWhereInput[] | EventSubscriptionWhereInput
-  NOT?: EventSubscriptionWhereInput[] | EventSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: EventWhereInput
+  category?: Category
+  category_not?: Category
+  category_in?: Category[] | Category
+  category_not_in?: Category[] | Category
+  type?: EventType
+  type_not?: EventType
+  type_in?: EventType[] | EventType
+  type_not_in?: EventType[] | EventType
+  startTime?: DateTime
+  startTime_not?: DateTime
+  startTime_in?: DateTime[] | DateTime
+  startTime_not_in?: DateTime[] | DateTime
+  startTime_lt?: DateTime
+  startTime_lte?: DateTime
+  startTime_gt?: DateTime
+  startTime_gte?: DateTime
+  place?: String
+  place_not?: String
+  place_in?: String[] | String
+  place_not_in?: String[] | String
+  place_lt?: String
+  place_lte?: String
+  place_gt?: String
+  place_gte?: String
+  place_contains?: String
+  place_not_contains?: String
+  place_starts_with?: String
+  place_not_starts_with?: String
+  place_ends_with?: String
+  place_not_ends_with?: String
+  owner?: UserWhereInput
 }
 
 export interface UserUpdateWithoutTeamsDataInput {
   name?: String
+  events?: EventUpdateManyWithoutOwnerInput
 }
 
-export interface EventUpdateInput {
+export interface UserUpdateWithoutEventsDataInput {
   name?: String
-  iconUrl?: String
+  teams?: TeamUpdateManyWithoutMembersInput
 }
 
-export interface TeamWhereUniqueInput {
+export interface UserWhereUniqueInput {
   id?: ID_Input
+  name?: String
 }
 
 /*
@@ -1310,75 +1800,10 @@ export interface EventPreviousValues {
   id: ID_Output
   name?: String
   iconUrl?: String
-}
-
-export interface BatchPayload {
-  count: Long
-}
-
-export interface User extends Node {
-  id: ID_Output
-  name?: String
-  teams?: Team[]
-}
-
-/*
- * A connection to a list of items.
-
- */
-export interface UserConnection {
-  pageInfo: PageInfo
-  edges: UserEdge[]
-  aggregate: AggregateUser
-}
-
-export interface TeamSubscriptionPayload {
-  mutation: MutationType
-  node?: Team
-  updatedFields?: String[]
-  previousValues?: TeamPreviousValues
-}
-
-export interface AggregateEvent {
-  count: Int
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface EventEdge {
-  node: Event
-  cursor: String
-}
-
-/*
- * A connection to a list of items.
-
- */
-export interface EventConnection {
-  pageInfo: PageInfo
-  edges: EventEdge[]
-  aggregate: AggregateEvent
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface TeamEdge {
-  node: Team
-  cursor: String
-}
-
-export interface Event extends Node {
-  id: ID_Output
-  name?: String
-  iconUrl?: String
-}
-
-export interface AggregateUser {
-  count: Int
+  category?: Category
+  type?: EventType
+  startTime?: DateTime
+  place?: String
 }
 
 export interface EventSubscriptionPayload {
@@ -1390,26 +1815,10 @@ export interface EventSubscriptionPayload {
 
 export interface Team extends Node {
   id: ID_Output
+  category?: Category
   name?: String
+  description?: String
   members?: User[]
-  logoUrl?: String
-}
-
-export interface UserPreviousValues {
-  id: ID_Output
-  name?: String
-}
-
-export interface UserSubscriptionPayload {
-  mutation: MutationType
-  node?: User
-  updatedFields?: String[]
-  previousValues?: UserPreviousValues
-}
-
-export interface TeamPreviousValues {
-  id: ID_Output
-  name?: String
   logoUrl?: String
 }
 
@@ -1425,12 +1834,45 @@ export interface PageInfo {
 }
 
 /*
+ * A connection to a list of items.
+
+ */
+export interface UserConnection {
+  pageInfo: PageInfo
+  edges: UserEdge[]
+  aggregate: AggregateUser
+}
+
+export interface User extends Node {
+  id: ID_Output
+  name?: String
+  teams?: Team[]
+  events?: Event[]
+}
+
+/*
  * An edge in a connection.
 
  */
-export interface UserEdge {
-  node: User
+export interface EventEdge {
+  node: Event
   cursor: String
+}
+
+export interface BatchPayload {
+  count: Long
+}
+
+export interface AggregateTeam {
+  count: Int
+}
+
+export interface TeamPreviousValues {
+  id: ID_Output
+  category?: Category
+  name?: String
+  description?: String
+  logoUrl?: String
 }
 
 /*
@@ -1443,15 +1885,83 @@ export interface TeamConnection {
   aggregate: AggregateTeam
 }
 
-export interface AggregateTeam {
+/*
+ * An edge in a connection.
+
+ */
+export interface UserEdge {
+  node: User
+  cursor: String
+}
+
+export interface UserPreviousValues {
+  id: ID_Output
+  name?: String
+}
+
+export interface UserSubscriptionPayload {
+  mutation: MutationType
+  node?: User
+  updatedFields?: String[]
+  previousValues?: UserPreviousValues
+}
+
+export interface TeamSubscriptionPayload {
+  mutation: MutationType
+  node?: Team
+  updatedFields?: String[]
+  previousValues?: TeamPreviousValues
+}
+
+export interface Event extends Node {
+  id: ID_Output
+  name?: String
+  iconUrl?: String
+  category?: Category
+  type?: EventType
+  startTime?: DateTime
+  place?: String
+  owner?: User
+}
+
+export interface AggregateEvent {
+  count: Int
+}
+
+export interface AggregateUser {
   count: Int
 }
 
 /*
-The 'Long' scalar type represents non-fractional signed whole numeric values.
-Long can represent values between -(2^63) and 2^63 - 1.
+ * An edge in a connection.
+
+ */
+export interface TeamEdge {
+  node: Team
+  cursor: String
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface EventConnection {
+  pageInfo: PageInfo
+  edges: EventEdge[]
+  aggregate: AggregateEvent
+}
+
+export type DateTime = string
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type Long = string
+export type Int = number
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -1460,14 +1970,10 @@ export type ID_Input = string | number
 export type ID_Output = string
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The 'Long' scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
 */
-export type Boolean = boolean
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number
+export type Long = string
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.

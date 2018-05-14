@@ -13,7 +13,7 @@ class SelectCategoryScreen extends React.Component {
                 <H2 style={{margin: 10}}>게임</H2>
                 <TouchableOpacity 
                 onPress={() => {
-                    this.props.navigation.state.params._setCategory('롤')
+                    this.props.navigation.state.params._setCategory('LOL')
                     this.props.navigation.goBack()
                 }}
                 style={{height: 50, borderWidth: 1, margin: 10}}>
@@ -21,7 +21,7 @@ class SelectCategoryScreen extends React.Component {
                 </TouchableOpacity>
                 <TouchableOpacity 
                 onPress={() => {
-                    this.props.navigation.state.params._setCategory('배그')
+                    this.props.navigation.state.params._setCategory('PUBG')
                     this.props.navigation.goBack()
                 }}
                 style={{height: 50, borderWidth: 1, margin: 10}}>
@@ -29,7 +29,7 @@ class SelectCategoryScreen extends React.Component {
                 </TouchableOpacity>
                 <TouchableOpacity 
                 onPress={() => {
-                    this.props.navigation.state.params._setCategory('오버워치')
+                    this.props.navigation.state.params._setCategory('OVERWATCH')
                     this.props.navigation.goBack()
                 }}
                 style={{height: 50, borderWidth: 1, margin: 10}}>
@@ -37,7 +37,7 @@ class SelectCategoryScreen extends React.Component {
                 </TouchableOpacity>
                 <TouchableOpacity 
                 onPress={() => {
-                    this.props.navigation.state.params._setCategory('기타 게임')
+                    this.props.navigation.state.params._setCategory('ETC_GAMES')
                     this.props.navigation.goBack()
                 }}
                 style={{height: 50, borderWidth: 1, margin: 10}}>
@@ -46,7 +46,7 @@ class SelectCategoryScreen extends React.Component {
                 <H2 style={{margin: 10}}>스포츠</H2>
                 <TouchableOpacity 
                 onPress={() => {
-                    this.props.navigation.state.params._setCategory('축구/풋살')
+                    this.props.navigation.state.params._setCategory('SOCCER')
                     this.props.navigation.goBack()
                 }}
                 style={{height: 50, borderWidth: 1, margin: 10}}>
@@ -54,7 +54,7 @@ class SelectCategoryScreen extends React.Component {
                 </TouchableOpacity>
                 <TouchableOpacity 
                 onPress={() => {
-                    this.props.navigation.state.params._setCategory('농구')
+                    this.props.navigation.state.params._setCategory('BASKET_BALL')
                     this.props.navigation.goBack()
                 }}
                 style={{height: 50, borderWidth: 1, margin: 10}}>
@@ -62,7 +62,7 @@ class SelectCategoryScreen extends React.Component {
                 </TouchableOpacity>
                 <TouchableOpacity 
                 onPress={() => {
-                    this.props.navigation.state.params._setCategory('기타 스포츠')
+                    this.props.navigation.state.params._setCategory('ETC_SPORTS')
                     this.props.navigation.goBack()
                 }}
                 style={{height: 50, borderWidth: 1, margin: 10}}>
@@ -71,7 +71,7 @@ class SelectCategoryScreen extends React.Component {
                 <H2 style={{margin: 10}}>자유 팀</H2>
                 <TouchableOpacity 
                 onPress={() => {
-                    this.props.navigation.state.params._setCategory('자유 팀')
+                    this.props.navigation.state.params._setCategory('ANY')
                     this.props.navigation.goBack()
                 }}
                 style={{height: 50, borderWidth: 1, margin: 10}}>
