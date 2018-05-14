@@ -12,7 +12,7 @@ class TeamHeader extends React.Component {
                     </Button>
                 </Left>
                 <Body>
-                    <Title>팀 이름</Title>
+                    <Title>{this.props.title ? this.props.title : "팀 이름"}</Title>
                 </Body>
                 <Right>
                     <Button transparent onPress={() => this.props.navigation.navigate('Search')}>

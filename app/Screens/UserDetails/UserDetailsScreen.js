@@ -1,14 +1,33 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import { Container, Content, Text, Tabs, Tab, H3, Icon, Left, Right, ListItem, List, Thumbnail, Body, Card, CardItem } from 'native-base'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
 
 import UserHeader from '../../Components/UserHeader'
+
+import LoadingScreen from '../SystemScreens/LoadingScreen'
+import ErrorScreen from '../SystemScreens/ErrorScreen'
 
 class UserDetailsScreen extends React.Component {
     render() {
         return (
+            <Query
+                query={USER_QUERY}
+                variables={{
+                    id: this.props.navigation.state.params.userId
+                }}
+            >
+            {({ data, loading, error }) => {
+            if (loading) {
+                return <LoadingScreen />
+            }
+            if (error) {
+                return <ErrorScreen />
+            }
+            return (
             <Container>
-                <UserHeader navigation={this.props.navigation}/>
+                <UserHeader navigation={this.props.navigation} title={data.user.name}/>
             <Content>
                 <View style={{height: 200, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <View style={{flexDirection:"row"}}>
@@ -167,8 +186,20 @@ class UserDetailsScreen extends React.Component {
                 </Tabs>
             </Content>
             </Container>
+            )
+            }}
+            </Query>
         )
     }
 }
+
+const USER_QUERY = gql`
+query userQuery($id: ID!) {
+    user(id: $id) {
+        id
+        name
+    }
+}
+`
 
 export default UserDetailsScreen

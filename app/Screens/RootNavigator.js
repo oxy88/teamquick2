@@ -9,6 +9,7 @@ import SearchMainScreen from './Search/SearchMainScreen'
 import SettingsScreen from './Settings/SettingsScreen'
 import AddStack from './Add/AddStack'
 import UserMatchingStack from './MainTab/UserMatching/UserMatchingStack'
+import IncompleteTeamMatchingStack from './MainTab/IncompleteTeamMatching/IncompleteTeamMatchingStack'
 import TeamMatchingStack from './MainTab/TeamMatching/TeamMatchingStack'
 
 const AppStack = StackNavigator({
@@ -26,6 +27,9 @@ const AppStack = StackNavigator({
     },
     UserMatching: {
         screen: UserMatchingStack
+    },
+    IncompleteTeamMatching: {
+        screen: IncompleteTeamMatchingStack
     },
     TeamMatching: {
         screen: TeamMatchingStack

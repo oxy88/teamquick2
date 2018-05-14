@@ -1,27 +1,7 @@
 # source: http://localhost:4466/front3/dev
-# timestamp: Tue May 08 2018 22:43:52 GMT+0900 (KST)
+# timestamp: Mon May 14 2018 12:58:12 GMT+0900 (KST)
 
 type AggregateEvent {
-  count: Int!
-}
-
-type AggregateInterest {
-  count: Int!
-}
-
-type AggregateLol {
-  count: Int!
-}
-
-type AggregateOverwatch {
-  count: Int!
-}
-
-type AggregatePubg {
-  count: Int!
-}
-
-type AggregateScrimmage {
   count: Int!
 }
 
@@ -29,19 +9,7 @@ type AggregateTeam {
   count: Int!
 }
 
-type AggregateTeamComment {
-  count: Int!
-}
-
 type AggregateUser {
-  count: Int!
-}
-
-type AggregateUserComment {
-  count: Int!
-}
-
-type AggregateUserMatching {
   count: Int!
 }
 
@@ -50,14 +18,10 @@ type BatchPayload {
   count: Long!
 }
 
-scalar DateTime
-
 type Event implements Node {
   id: ID!
-  topic: String
-  place: String
-  type: String
-  startDateTime: DateTime
+  name: String
+  iconUrl: String
 }
 
 """A connection to a list of items."""
@@ -71,20 +35,8 @@ type EventConnection {
 }
 
 input EventCreateInput {
-  topic: String
-  place: String
-  type: String
-  startDateTime: DateTime
-}
-
-input EventCreateManyInput {
-  create: [EventCreateInput!]
-  connect: [EventWhereUniqueInput!]
-}
-
-input EventCreateOneInput {
-  create: EventCreateInput
-  connect: EventWhereUniqueInput
+  name: String
+  iconUrl: String
 }
 
 """An edge in a connection."""
@@ -99,14 +51,10 @@ type EventEdge {
 enum EventOrderByInput {
   id_ASC
   id_DESC
-  topic_ASC
-  topic_DESC
-  place_ASC
-  place_DESC
-  type_ASC
-  type_DESC
-  startDateTime_ASC
-  startDateTime_DESC
+  name_ASC
+  name_DESC
+  iconUrl_ASC
+  iconUrl_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -115,10 +63,8 @@ enum EventOrderByInput {
 
 type EventPreviousValues {
   id: ID!
-  topic: String
-  place: String
-  type: String
-  startDateTime: DateTime
+  name: String
+  iconUrl: String
 }
 
 type EventSubscriptionPayload {
@@ -160,52 +106,9 @@ input EventSubscriptionWhereInput {
   node: EventWhereInput
 }
 
-input EventUpdateDataInput {
-  topic: String
-  place: String
-  type: String
-  startDateTime: DateTime
-}
-
 input EventUpdateInput {
-  topic: String
-  place: String
-  type: String
-  startDateTime: DateTime
-}
-
-input EventUpdateManyInput {
-  create: [EventCreateInput!]
-  connect: [EventWhereUniqueInput!]
-  disconnect: [EventWhereUniqueInput!]
-  delete: [EventWhereUniqueInput!]
-  update: [EventUpdateWithWhereUniqueNestedInput!]
-  upsert: [EventUpsertWithWhereUniqueNestedInput!]
-}
-
-input EventUpdateOneInput {
-  create: EventCreateInput
-  connect: EventWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: EventUpdateDataInput
-  upsert: EventUpsertNestedInput
-}
-
-input EventUpdateWithWhereUniqueNestedInput {
-  where: EventWhereUniqueInput!
-  data: EventUpdateDataInput!
-}
-
-input EventUpsertNestedInput {
-  update: EventUpdateDataInput!
-  create: EventCreateInput!
-}
-
-input EventUpsertWithWhereUniqueNestedInput {
-  where: EventWhereUniqueInput!
-  update: EventUpdateDataInput!
-  create: EventCreateInput!
+  name: String
+  iconUrl: String
 }
 
 input EventWhereInput {
@@ -257,497 +160,89 @@ input EventWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  topic: String
+  name: String
 
   """All values that are not equal to given value."""
-  topic_not: String
+  name_not: String
 
   """All values that are contained in given list."""
-  topic_in: [String!]
+  name_in: [String!]
 
   """All values that are not contained in given list."""
-  topic_not_in: [String!]
+  name_not_in: [String!]
 
   """All values less than the given value."""
-  topic_lt: String
+  name_lt: String
 
   """All values less than or equal the given value."""
-  topic_lte: String
+  name_lte: String
 
   """All values greater than the given value."""
-  topic_gt: String
+  name_gt: String
 
   """All values greater than or equal the given value."""
-  topic_gte: String
+  name_gte: String
 
   """All values containing the given string."""
-  topic_contains: String
+  name_contains: String
 
   """All values not containing the given string."""
-  topic_not_contains: String
+  name_not_contains: String
 
   """All values starting with the given string."""
-  topic_starts_with: String
+  name_starts_with: String
 
   """All values not starting with the given string."""
-  topic_not_starts_with: String
+  name_not_starts_with: String
 
   """All values ending with the given string."""
-  topic_ends_with: String
+  name_ends_with: String
 
   """All values not ending with the given string."""
-  topic_not_ends_with: String
-  place: String
+  name_not_ends_with: String
+  iconUrl: String
 
   """All values that are not equal to given value."""
-  place_not: String
+  iconUrl_not: String
 
   """All values that are contained in given list."""
-  place_in: [String!]
+  iconUrl_in: [String!]
 
   """All values that are not contained in given list."""
-  place_not_in: [String!]
+  iconUrl_not_in: [String!]
 
   """All values less than the given value."""
-  place_lt: String
+  iconUrl_lt: String
 
   """All values less than or equal the given value."""
-  place_lte: String
+  iconUrl_lte: String
 
   """All values greater than the given value."""
-  place_gt: String
+  iconUrl_gt: String
 
   """All values greater than or equal the given value."""
-  place_gte: String
+  iconUrl_gte: String
 
   """All values containing the given string."""
-  place_contains: String
+  iconUrl_contains: String
 
   """All values not containing the given string."""
-  place_not_contains: String
+  iconUrl_not_contains: String
 
   """All values starting with the given string."""
-  place_starts_with: String
+  iconUrl_starts_with: String
 
   """All values not starting with the given string."""
-  place_not_starts_with: String
+  iconUrl_not_starts_with: String
 
   """All values ending with the given string."""
-  place_ends_with: String
+  iconUrl_ends_with: String
 
   """All values not ending with the given string."""
-  place_not_ends_with: String
-  type: String
-
-  """All values that are not equal to given value."""
-  type_not: String
-
-  """All values that are contained in given list."""
-  type_in: [String!]
-
-  """All values that are not contained in given list."""
-  type_not_in: [String!]
-
-  """All values less than the given value."""
-  type_lt: String
-
-  """All values less than or equal the given value."""
-  type_lte: String
-
-  """All values greater than the given value."""
-  type_gt: String
-
-  """All values greater than or equal the given value."""
-  type_gte: String
-
-  """All values containing the given string."""
-  type_contains: String
-
-  """All values not containing the given string."""
-  type_not_contains: String
-
-  """All values starting with the given string."""
-  type_starts_with: String
-
-  """All values not starting with the given string."""
-  type_not_starts_with: String
-
-  """All values ending with the given string."""
-  type_ends_with: String
-
-  """All values not ending with the given string."""
-  type_not_ends_with: String
-  startDateTime: DateTime
-
-  """All values that are not equal to given value."""
-  startDateTime_not: DateTime
-
-  """All values that are contained in given list."""
-  startDateTime_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  startDateTime_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  startDateTime_lt: DateTime
-
-  """All values less than or equal the given value."""
-  startDateTime_lte: DateTime
-
-  """All values greater than the given value."""
-  startDateTime_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  startDateTime_gte: DateTime
+  iconUrl_not_ends_with: String
 }
 
 input EventWhereUniqueInput {
-  id: ID
-}
-
-type Interest implements Node {
-  id: ID!
-}
-
-"""A connection to a list of items."""
-type InterestConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [InterestEdge]!
-  aggregate: AggregateInterest!
-}
-
-input InterestCreateManyInput {
-  connect: [InterestWhereUniqueInput!]
-}
-
-"""An edge in a connection."""
-type InterestEdge {
-  """The item at the end of the edge."""
-  node: Interest!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum InterestOrderByInput {
-  id_ASC
-  id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type InterestPreviousValues {
-  id: ID!
-}
-
-type InterestSubscriptionPayload {
-  mutation: MutationType!
-  node: Interest
-  updatedFields: [String!]
-  previousValues: InterestPreviousValues
-}
-
-input InterestSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [InterestSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [InterestSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [InterestSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: InterestWhereInput
-}
-
-input InterestUpdateManyInput {
-  connect: [InterestWhereUniqueInput!]
-  disconnect: [InterestWhereUniqueInput!]
-  delete: [InterestWhereUniqueInput!]
-}
-
-input InterestWhereInput {
-  """Logical AND on all given filters."""
-  AND: [InterestWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [InterestWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [InterestWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-}
-
-input InterestWhereUniqueInput {
-  id: ID
-}
-
-type Lol implements Node {
-  id: ID!
-  gameType: LolGameType
-  lolTier: LolTier
-  lolRole: LolRole
-}
-
-"""A connection to a list of items."""
-type LolConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [LolEdge]!
-  aggregate: AggregateLol!
-}
-
-input LolCreateInput {
-  gameType: LolGameType
-  lolTier: LolTier
-  lolRole: LolRole
-}
-
-"""An edge in a connection."""
-type LolEdge {
-  """The item at the end of the edge."""
-  node: Lol!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum LolGameType {
-  DUO_RANK
-  FLEX_RANK
-}
-
-enum LolOrderByInput {
-  id_ASC
-  id_DESC
-  gameType_ASC
-  gameType_DESC
-  lolTier_ASC
-  lolTier_DESC
-  lolRole_ASC
-  lolRole_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type LolPreviousValues {
-  id: ID!
-  gameType: LolGameType
-  lolTier: LolTier
-  lolRole: LolRole
-}
-
-enum LolRole {
-  FLEX
-  TOP
-  JUNGLE
-  MID
-  ADC
-  SUPPORT
-}
-
-type LolSubscriptionPayload {
-  mutation: MutationType!
-  node: Lol
-  updatedFields: [String!]
-  previousValues: LolPreviousValues
-}
-
-input LolSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [LolSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [LolSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [LolSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: LolWhereInput
-}
-
-enum LolTier {
-  DIAMOND
-  PLATINUM
-  GOLD
-  SILVER
-  BRONZE
-}
-
-input LolUpdateInput {
-  gameType: LolGameType
-  lolTier: LolTier
-  lolRole: LolRole
-}
-
-input LolWhereInput {
-  """Logical AND on all given filters."""
-  AND: [LolWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [LolWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [LolWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  gameType: LolGameType
-
-  """All values that are not equal to given value."""
-  gameType_not: LolGameType
-
-  """All values that are contained in given list."""
-  gameType_in: [LolGameType!]
-
-  """All values that are not contained in given list."""
-  gameType_not_in: [LolGameType!]
-  lolTier: LolTier
-
-  """All values that are not equal to given value."""
-  lolTier_not: LolTier
-
-  """All values that are contained in given list."""
-  lolTier_in: [LolTier!]
-
-  """All values that are not contained in given list."""
-  lolTier_not_in: [LolTier!]
-  lolRole: LolRole
-
-  """All values that are not equal to given value."""
-  lolRole_not: LolRole
-
-  """All values that are contained in given list."""
-  lolRole_in: [LolRole!]
-
-  """All values that are not contained in given list."""
-  lolRole_not_in: [LolRole!]
-}
-
-input LolWhereUniqueInput {
   id: ID
 }
 
@@ -759,62 +254,23 @@ scalar Long
 
 type Mutation {
   createUser(data: UserCreateInput!): User!
-  createInterest: Interest!
-  createUserComment(data: UserCommentCreateInput!): UserComment!
   createTeam(data: TeamCreateInput!): Team!
-  createTeamComment(data: TeamCommentCreateInput!): TeamComment!
-  createUserMatching: UserMatching!
   createEvent(data: EventCreateInput!): Event!
-  createScrimmage: Scrimmage!
-  createPubg(data: PubgCreateInput!): Pubg!
-  createLol(data: LolCreateInput!): Lol!
-  createOverwatch(data: OverwatchCreateInput!): Overwatch!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateUserComment(data: UserCommentUpdateInput!, where: UserCommentWhereUniqueInput!): UserComment
   updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team
-  updateTeamComment(data: TeamCommentUpdateInput!, where: TeamCommentWhereUniqueInput!): TeamComment
   updateEvent(data: EventUpdateInput!, where: EventWhereUniqueInput!): Event
-  updatePubg(data: PubgUpdateInput!, where: PubgWhereUniqueInput!): Pubg
-  updateLol(data: LolUpdateInput!, where: LolWhereUniqueInput!): Lol
-  updateOverwatch(data: OverwatchUpdateInput!, where: OverwatchWhereUniqueInput!): Overwatch
   deleteUser(where: UserWhereUniqueInput!): User
-  deleteInterest(where: InterestWhereUniqueInput!): Interest
-  deleteUserComment(where: UserCommentWhereUniqueInput!): UserComment
   deleteTeam(where: TeamWhereUniqueInput!): Team
-  deleteTeamComment(where: TeamCommentWhereUniqueInput!): TeamComment
-  deleteUserMatching(where: UserMatchingWhereUniqueInput!): UserMatching
   deleteEvent(where: EventWhereUniqueInput!): Event
-  deleteScrimmage(where: ScrimmageWhereUniqueInput!): Scrimmage
-  deletePubg(where: PubgWhereUniqueInput!): Pubg
-  deleteLol(where: LolWhereUniqueInput!): Lol
-  deleteOverwatch(where: OverwatchWhereUniqueInput!): Overwatch
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertUserComment(where: UserCommentWhereUniqueInput!, create: UserCommentCreateInput!, update: UserCommentUpdateInput!): UserComment!
   upsertTeam(where: TeamWhereUniqueInput!, create: TeamCreateInput!, update: TeamUpdateInput!): Team!
-  upsertTeamComment(where: TeamCommentWhereUniqueInput!, create: TeamCommentCreateInput!, update: TeamCommentUpdateInput!): TeamComment!
   upsertEvent(where: EventWhereUniqueInput!, create: EventCreateInput!, update: EventUpdateInput!): Event!
-  upsertPubg(where: PubgWhereUniqueInput!, create: PubgCreateInput!, update: PubgUpdateInput!): Pubg!
-  upsertLol(where: LolWhereUniqueInput!, create: LolCreateInput!, update: LolUpdateInput!): Lol!
-  upsertOverwatch(where: OverwatchWhereUniqueInput!, create: OverwatchCreateInput!, update: OverwatchUpdateInput!): Overwatch!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
-  updateManyUserComments(data: UserCommentUpdateInput!, where: UserCommentWhereInput): BatchPayload!
   updateManyTeams(data: TeamUpdateInput!, where: TeamWhereInput): BatchPayload!
-  updateManyTeamComments(data: TeamCommentUpdateInput!, where: TeamCommentWhereInput): BatchPayload!
   updateManyEvents(data: EventUpdateInput!, where: EventWhereInput): BatchPayload!
-  updateManyPubgs(data: PubgUpdateInput!, where: PubgWhereInput): BatchPayload!
-  updateManyLols(data: LolUpdateInput!, where: LolWhereInput): BatchPayload!
-  updateManyOverwatches(data: OverwatchUpdateInput!, where: OverwatchWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManyInterests(where: InterestWhereInput): BatchPayload!
-  deleteManyUserComments(where: UserCommentWhereInput): BatchPayload!
   deleteManyTeams(where: TeamWhereInput): BatchPayload!
-  deleteManyTeamComments(where: TeamCommentWhereInput): BatchPayload!
-  deleteManyUserMatchings(where: UserMatchingWhereInput): BatchPayload!
   deleteManyEvents(where: EventWhereInput): BatchPayload!
-  deleteManyScrimmages(where: ScrimmageWhereInput): BatchPayload!
-  deleteManyPubgs(where: PubgWhereInput): BatchPayload!
-  deleteManyLols(where: LolWhereInput): BatchPayload!
-  deleteManyOverwatches(where: OverwatchWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -827,210 +283,6 @@ enum MutationType {
 interface Node {
   """The id of the object."""
   id: ID!
-}
-
-type Overwatch implements Node {
-  id: ID!
-  gameType: OverwatchGameType
-  overwatchTier: OverwatchTier
-  overwatchRole: OverwatchRole
-}
-
-"""A connection to a list of items."""
-type OverwatchConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [OverwatchEdge]!
-  aggregate: AggregateOverwatch!
-}
-
-input OverwatchCreateInput {
-  gameType: OverwatchGameType
-  overwatchTier: OverwatchTier
-  overwatchRole: OverwatchRole
-}
-
-"""An edge in a connection."""
-type OverwatchEdge {
-  """The item at the end of the edge."""
-  node: Overwatch!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum OverwatchGameType {
-  COMPETITIVE
-  QUICK
-}
-
-enum OverwatchOrderByInput {
-  id_ASC
-  id_DESC
-  gameType_ASC
-  gameType_DESC
-  overwatchTier_ASC
-  overwatchTier_DESC
-  overwatchRole_ASC
-  overwatchRole_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type OverwatchPreviousValues {
-  id: ID!
-  gameType: OverwatchGameType
-  overwatchTier: OverwatchTier
-  overwatchRole: OverwatchRole
-}
-
-enum OverwatchRole {
-  FLEX
-  TANK
-  DPS
-  HEAL
-}
-
-type OverwatchSubscriptionPayload {
-  mutation: MutationType!
-  node: Overwatch
-  updatedFields: [String!]
-  previousValues: OverwatchPreviousValues
-}
-
-input OverwatchSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [OverwatchSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [OverwatchSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [OverwatchSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: OverwatchWhereInput
-}
-
-enum OverwatchTier {
-  DIAMOND
-  PLATINUM
-  GOLD
-  SILVER
-  BRONZE
-}
-
-input OverwatchUpdateInput {
-  gameType: OverwatchGameType
-  overwatchTier: OverwatchTier
-  overwatchRole: OverwatchRole
-}
-
-input OverwatchWhereInput {
-  """Logical AND on all given filters."""
-  AND: [OverwatchWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [OverwatchWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [OverwatchWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  gameType: OverwatchGameType
-
-  """All values that are not equal to given value."""
-  gameType_not: OverwatchGameType
-
-  """All values that are contained in given list."""
-  gameType_in: [OverwatchGameType!]
-
-  """All values that are not contained in given list."""
-  gameType_not_in: [OverwatchGameType!]
-  overwatchTier: OverwatchTier
-
-  """All values that are not equal to given value."""
-  overwatchTier_not: OverwatchTier
-
-  """All values that are contained in given list."""
-  overwatchTier_in: [OverwatchTier!]
-
-  """All values that are not contained in given list."""
-  overwatchTier_not_in: [OverwatchTier!]
-  overwatchRole: OverwatchRole
-
-  """All values that are not equal to given value."""
-  overwatchRole_not: OverwatchRole
-
-  """All values that are contained in given list."""
-  overwatchRole_in: [OverwatchRole!]
-
-  """All values that are not contained in given list."""
-  overwatchRole_not_in: [OverwatchRole!]
-}
-
-input OverwatchWhereUniqueInput {
-  id: ID
 }
 
 """Information about pagination in a connection."""
@@ -1048,218 +300,16 @@ type PageInfo {
   endCursor: String
 }
 
-type Pubg implements Node {
-  id: ID!
-  gameType: PubgGameType
-  server: PubgServer
-}
-
-"""A connection to a list of items."""
-type PubgConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [PubgEdge]!
-  aggregate: AggregatePubg!
-}
-
-input PubgCreateInput {
-  gameType: PubgGameType
-  server: PubgServer
-}
-
-"""An edge in a connection."""
-type PubgEdge {
-  """The item at the end of the edge."""
-  node: Pubg!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum PubgGameType {
-  SQUAD
-  DUO
-}
-
-enum PubgOrderByInput {
-  id_ASC
-  id_DESC
-  gameType_ASC
-  gameType_DESC
-  server_ASC
-  server_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type PubgPreviousValues {
-  id: ID!
-  gameType: PubgGameType
-  server: PubgServer
-}
-
-enum PubgServer {
-  KAKAO
-  STEAM
-}
-
-type PubgSubscriptionPayload {
-  mutation: MutationType!
-  node: Pubg
-  updatedFields: [String!]
-  previousValues: PubgPreviousValues
-}
-
-input PubgSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [PubgSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [PubgSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [PubgSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: PubgWhereInput
-}
-
-input PubgUpdateInput {
-  gameType: PubgGameType
-  server: PubgServer
-}
-
-input PubgWhereInput {
-  """Logical AND on all given filters."""
-  AND: [PubgWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [PubgWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [PubgWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  gameType: PubgGameType
-
-  """All values that are not equal to given value."""
-  gameType_not: PubgGameType
-
-  """All values that are contained in given list."""
-  gameType_in: [PubgGameType!]
-
-  """All values that are not contained in given list."""
-  gameType_not_in: [PubgGameType!]
-  server: PubgServer
-
-  """All values that are not equal to given value."""
-  server_not: PubgServer
-
-  """All values that are contained in given list."""
-  server_in: [PubgServer!]
-
-  """All values that are not contained in given list."""
-  server_not_in: [PubgServer!]
-}
-
-input PubgWhereUniqueInput {
-  id: ID
-}
-
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  interests(where: InterestWhereInput, orderBy: InterestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interest]!
-  userComments(where: UserCommentWhereInput, orderBy: UserCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserComment]!
   teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team]!
-  teamComments(where: TeamCommentWhereInput, orderBy: TeamCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TeamComment]!
-  userMatchings(where: UserMatchingWhereInput, orderBy: UserMatchingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserMatching]!
   events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
-  scrimmages(where: ScrimmageWhereInput, orderBy: ScrimmageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Scrimmage]!
-  pubgs(where: PubgWhereInput, orderBy: PubgOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Pubg]!
-  lols(where: LolWhereInput, orderBy: LolOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Lol]!
-  overwatches(where: OverwatchWhereInput, orderBy: OverwatchOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Overwatch]!
   user(where: UserWhereUniqueInput!): User
-  interest(where: InterestWhereUniqueInput!): Interest
-  userComment(where: UserCommentWhereUniqueInput!): UserComment
   team(where: TeamWhereUniqueInput!): Team
-  teamComment(where: TeamCommentWhereUniqueInput!): TeamComment
-  userMatching(where: UserMatchingWhereUniqueInput!): UserMatching
   event(where: EventWhereUniqueInput!): Event
-  scrimmage(where: ScrimmageWhereUniqueInput!): Scrimmage
-  pubg(where: PubgWhereUniqueInput!): Pubg
-  lol(where: LolWhereUniqueInput!): Lol
-  overwatch(where: OverwatchWhereUniqueInput!): Overwatch
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  interestsConnection(where: InterestWhereInput, orderBy: InterestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InterestConnection!
-  userCommentsConnection(where: UserCommentWhereInput, orderBy: UserCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserCommentConnection!
   teamsConnection(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeamConnection!
-  teamCommentsConnection(where: TeamCommentWhereInput, orderBy: TeamCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeamCommentConnection!
-  userMatchingsConnection(where: UserMatchingWhereInput, orderBy: UserMatchingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserMatchingConnection!
   eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
-  scrimmagesConnection(where: ScrimmageWhereInput, orderBy: ScrimmageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ScrimmageConnection!
-  pubgsConnection(where: PubgWhereInput, orderBy: PubgOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PubgConnection!
-  lolsConnection(where: LolWhereInput, orderBy: LolOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LolConnection!
-  overwatchesConnection(where: OverwatchWhereInput, orderBy: OverwatchOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OverwatchConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1268,401 +318,17 @@ type Query {
   ): Node
 }
 
-type Scrimmage implements Node {
-  id: ID!
-}
-
-"""A connection to a list of items."""
-type ScrimmageConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [ScrimmageEdge]!
-  aggregate: AggregateScrimmage!
-}
-
-"""An edge in a connection."""
-type ScrimmageEdge {
-  """The item at the end of the edge."""
-  node: Scrimmage!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum ScrimmageOrderByInput {
-  id_ASC
-  id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type ScrimmagePreviousValues {
-  id: ID!
-}
-
-type ScrimmageSubscriptionPayload {
-  mutation: MutationType!
-  node: Scrimmage
-  updatedFields: [String!]
-  previousValues: ScrimmagePreviousValues
-}
-
-input ScrimmageSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [ScrimmageSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [ScrimmageSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [ScrimmageSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: ScrimmageWhereInput
-}
-
-input ScrimmageWhereInput {
-  """Logical AND on all given filters."""
-  AND: [ScrimmageWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [ScrimmageWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [ScrimmageWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-}
-
-input ScrimmageWhereUniqueInput {
-  id: ID
-}
-
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  interest(where: InterestSubscriptionWhereInput): InterestSubscriptionPayload
-  userComment(where: UserCommentSubscriptionWhereInput): UserCommentSubscriptionPayload
   team(where: TeamSubscriptionWhereInput): TeamSubscriptionPayload
-  teamComment(where: TeamCommentSubscriptionWhereInput): TeamCommentSubscriptionPayload
-  userMatching(where: UserMatchingSubscriptionWhereInput): UserMatchingSubscriptionPayload
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
-  scrimmage(where: ScrimmageSubscriptionWhereInput): ScrimmageSubscriptionPayload
-  pubg(where: PubgSubscriptionWhereInput): PubgSubscriptionPayload
-  lol(where: LolSubscriptionWhereInput): LolSubscriptionPayload
-  overwatch(where: OverwatchSubscriptionWhereInput): OverwatchSubscriptionPayload
 }
 
 type Team implements Node {
   id: ID!
   name: String
-  topic: TeamTopic
-  description: String
   members(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
-  followed(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
-  comments(where: TeamCommentWhereInput, orderBy: TeamCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TeamComment!]
-}
-
-type TeamComment implements Node {
-  id: ID!
-  writer(where: UserWhereInput): User
-  tag: TeamCommentTag
-  comment: String
-  related_event(where: EventWhereInput): Event
-}
-
-"""A connection to a list of items."""
-type TeamCommentConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [TeamCommentEdge]!
-  aggregate: AggregateTeamComment!
-}
-
-input TeamCommentCreateInput {
-  tag: TeamCommentTag
-  comment: String
-  writer: UserCreateOneInput
-  related_event: EventCreateOneInput
-}
-
-input TeamCommentCreateManyInput {
-  create: [TeamCommentCreateInput!]
-  connect: [TeamCommentWhereUniqueInput!]
-}
-
-"""An edge in a connection."""
-type TeamCommentEdge {
-  """The item at the end of the edge."""
-  node: TeamComment!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum TeamCommentOrderByInput {
-  id_ASC
-  id_DESC
-  tag_ASC
-  tag_DESC
-  comment_ASC
-  comment_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type TeamCommentPreviousValues {
-  id: ID!
-  tag: TeamCommentTag
-  comment: String
-}
-
-type TeamCommentSubscriptionPayload {
-  mutation: MutationType!
-  node: TeamComment
-  updatedFields: [String!]
-  previousValues: TeamCommentPreviousValues
-}
-
-input TeamCommentSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [TeamCommentSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [TeamCommentSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [TeamCommentSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: TeamCommentWhereInput
-}
-
-enum TeamCommentTag {
-  KIND
-  FUNNY
-}
-
-input TeamCommentUpdateDataInput {
-  tag: TeamCommentTag
-  comment: String
-  writer: UserUpdateOneInput
-  related_event: EventUpdateOneInput
-}
-
-input TeamCommentUpdateInput {
-  tag: TeamCommentTag
-  comment: String
-  writer: UserUpdateOneInput
-  related_event: EventUpdateOneInput
-}
-
-input TeamCommentUpdateManyInput {
-  create: [TeamCommentCreateInput!]
-  connect: [TeamCommentWhereUniqueInput!]
-  disconnect: [TeamCommentWhereUniqueInput!]
-  delete: [TeamCommentWhereUniqueInput!]
-  update: [TeamCommentUpdateWithWhereUniqueNestedInput!]
-  upsert: [TeamCommentUpsertWithWhereUniqueNestedInput!]
-}
-
-input TeamCommentUpdateWithWhereUniqueNestedInput {
-  where: TeamCommentWhereUniqueInput!
-  data: TeamCommentUpdateDataInput!
-}
-
-input TeamCommentUpsertWithWhereUniqueNestedInput {
-  where: TeamCommentWhereUniqueInput!
-  update: TeamCommentUpdateDataInput!
-  create: TeamCommentCreateInput!
-}
-
-input TeamCommentWhereInput {
-  """Logical AND on all given filters."""
-  AND: [TeamCommentWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [TeamCommentWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [TeamCommentWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  tag: TeamCommentTag
-
-  """All values that are not equal to given value."""
-  tag_not: TeamCommentTag
-
-  """All values that are contained in given list."""
-  tag_in: [TeamCommentTag!]
-
-  """All values that are not contained in given list."""
-  tag_not_in: [TeamCommentTag!]
-  comment: String
-
-  """All values that are not equal to given value."""
-  comment_not: String
-
-  """All values that are contained in given list."""
-  comment_in: [String!]
-
-  """All values that are not contained in given list."""
-  comment_not_in: [String!]
-
-  """All values less than the given value."""
-  comment_lt: String
-
-  """All values less than or equal the given value."""
-  comment_lte: String
-
-  """All values greater than the given value."""
-  comment_gt: String
-
-  """All values greater than or equal the given value."""
-  comment_gte: String
-
-  """All values containing the given string."""
-  comment_contains: String
-
-  """All values not containing the given string."""
-  comment_not_contains: String
-
-  """All values starting with the given string."""
-  comment_starts_with: String
-
-  """All values not starting with the given string."""
-  comment_not_starts_with: String
-
-  """All values ending with the given string."""
-  comment_ends_with: String
-
-  """All values not ending with the given string."""
-  comment_not_ends_with: String
-  writer: UserWhereInput
-  related_event: EventWhereInput
-}
-
-input TeamCommentWhereUniqueInput {
-  id: ID
+  logoUrl: String
 }
 
 """A connection to a list of items."""
@@ -1677,16 +343,8 @@ type TeamConnection {
 
 input TeamCreateInput {
   name: String
-  topic: TeamTopic
-  description: String
+  logoUrl: String
   members: UserCreateManyWithoutTeamsInput
-  followed: UserCreateManyWithoutFollowingTeamsInput
-  comments: TeamCommentCreateManyInput
-}
-
-input TeamCreateManyWithoutFollowedInput {
-  create: [TeamCreateWithoutFollowedInput!]
-  connect: [TeamWhereUniqueInput!]
 }
 
 input TeamCreateManyWithoutMembersInput {
@@ -1694,20 +352,9 @@ input TeamCreateManyWithoutMembersInput {
   connect: [TeamWhereUniqueInput!]
 }
 
-input TeamCreateWithoutFollowedInput {
-  name: String
-  topic: TeamTopic
-  description: String
-  members: UserCreateManyWithoutTeamsInput
-  comments: TeamCommentCreateManyInput
-}
-
 input TeamCreateWithoutMembersInput {
   name: String
-  topic: TeamTopic
-  description: String
-  followed: UserCreateManyWithoutFollowingTeamsInput
-  comments: TeamCommentCreateManyInput
+  logoUrl: String
 }
 
 """An edge in a connection."""
@@ -1724,10 +371,8 @@ enum TeamOrderByInput {
   id_DESC
   name_ASC
   name_DESC
-  topic_ASC
-  topic_DESC
-  description_ASC
-  description_DESC
+  logoUrl_ASC
+  logoUrl_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -1737,8 +382,7 @@ enum TeamOrderByInput {
 type TeamPreviousValues {
   id: ID!
   name: String
-  topic: TeamTopic
-  description: String
+  logoUrl: String
 }
 
 type TeamSubscriptionPayload {
@@ -1780,33 +424,10 @@ input TeamSubscriptionWhereInput {
   node: TeamWhereInput
 }
 
-enum TeamTopic {
-  LOL
-  PUBG
-  OVERWATCH
-  ETC_GAME
-  SOCCER
-  BASKET_BALL
-  ETC_SPORTS
-  FREE
-}
-
 input TeamUpdateInput {
   name: String
-  topic: TeamTopic
-  description: String
+  logoUrl: String
   members: UserUpdateManyWithoutTeamsInput
-  followed: UserUpdateManyWithoutFollowingTeamsInput
-  comments: TeamCommentUpdateManyInput
-}
-
-input TeamUpdateManyWithoutFollowedInput {
-  create: [TeamCreateWithoutFollowedInput!]
-  connect: [TeamWhereUniqueInput!]
-  disconnect: [TeamWhereUniqueInput!]
-  delete: [TeamWhereUniqueInput!]
-  update: [TeamUpdateWithWhereUniqueWithoutFollowedInput!]
-  upsert: [TeamUpsertWithWhereUniqueWithoutFollowedInput!]
 }
 
 input TeamUpdateManyWithoutMembersInput {
@@ -1818,36 +439,14 @@ input TeamUpdateManyWithoutMembersInput {
   upsert: [TeamUpsertWithWhereUniqueWithoutMembersInput!]
 }
 
-input TeamUpdateWithoutFollowedDataInput {
-  name: String
-  topic: TeamTopic
-  description: String
-  members: UserUpdateManyWithoutTeamsInput
-  comments: TeamCommentUpdateManyInput
-}
-
 input TeamUpdateWithoutMembersDataInput {
   name: String
-  topic: TeamTopic
-  description: String
-  followed: UserUpdateManyWithoutFollowingTeamsInput
-  comments: TeamCommentUpdateManyInput
-}
-
-input TeamUpdateWithWhereUniqueWithoutFollowedInput {
-  where: TeamWhereUniqueInput!
-  data: TeamUpdateWithoutFollowedDataInput!
+  logoUrl: String
 }
 
 input TeamUpdateWithWhereUniqueWithoutMembersInput {
   where: TeamWhereUniqueInput!
   data: TeamUpdateWithoutMembersDataInput!
-}
-
-input TeamUpsertWithWhereUniqueWithoutFollowedInput {
-  where: TeamWhereUniqueInput!
-  update: TeamUpdateWithoutFollowedDataInput!
-  create: TeamCreateWithoutFollowedInput!
 }
 
 input TeamUpsertWithWhereUniqueWithoutMembersInput {
@@ -1945,65 +544,49 @@ input TeamWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
-  topic: TeamTopic
+  logoUrl: String
 
   """All values that are not equal to given value."""
-  topic_not: TeamTopic
+  logoUrl_not: String
 
   """All values that are contained in given list."""
-  topic_in: [TeamTopic!]
+  logoUrl_in: [String!]
 
   """All values that are not contained in given list."""
-  topic_not_in: [TeamTopic!]
-  description: String
-
-  """All values that are not equal to given value."""
-  description_not: String
-
-  """All values that are contained in given list."""
-  description_in: [String!]
-
-  """All values that are not contained in given list."""
-  description_not_in: [String!]
+  logoUrl_not_in: [String!]
 
   """All values less than the given value."""
-  description_lt: String
+  logoUrl_lt: String
 
   """All values less than or equal the given value."""
-  description_lte: String
+  logoUrl_lte: String
 
   """All values greater than the given value."""
-  description_gt: String
+  logoUrl_gt: String
 
   """All values greater than or equal the given value."""
-  description_gte: String
+  logoUrl_gte: String
 
   """All values containing the given string."""
-  description_contains: String
+  logoUrl_contains: String
 
   """All values not containing the given string."""
-  description_not_contains: String
+  logoUrl_not_contains: String
 
   """All values starting with the given string."""
-  description_starts_with: String
+  logoUrl_starts_with: String
 
   """All values not starting with the given string."""
-  description_not_starts_with: String
+  logoUrl_not_starts_with: String
 
   """All values ending with the given string."""
-  description_ends_with: String
+  logoUrl_ends_with: String
 
   """All values not ending with the given string."""
-  description_not_ends_with: String
+  logoUrl_not_ends_with: String
   members_every: UserWhereInput
   members_some: UserWhereInput
   members_none: UserWhereInput
-  followed_every: UserWhereInput
-  followed_some: UserWhereInput
-  followed_none: UserWhereInput
-  comments_every: TeamCommentWhereInput
-  comments_some: TeamCommentWhereInput
-  comments_none: TeamCommentWhereInput
 }
 
 input TeamWhereUniqueInput {
@@ -2012,261 +595,8 @@ input TeamWhereUniqueInput {
 
 type User implements Node {
   id: ID!
+  name: String
   teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team!]
-  interest(where: InterestWhereInput, orderBy: InterestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interest!]
-  followingEvents(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event!]
-  followingTeams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team!]
-  follwoingUsers(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
-  comments(where: UserCommentWhereInput, orderBy: UserCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserComment!]
-}
-
-type UserComment implements Node {
-  id: ID!
-  writer(where: UserWhereInput): User
-  tag: UserCommentTag
-  comment: String
-  related_event(where: EventWhereInput): Event
-}
-
-"""A connection to a list of items."""
-type UserCommentConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [UserCommentEdge]!
-  aggregate: AggregateUserComment!
-}
-
-input UserCommentCreateInput {
-  tag: UserCommentTag
-  comment: String
-  writer: UserCreateOneWithoutCommentsInput
-  related_event: EventCreateOneInput
-}
-
-input UserCommentCreateManyWithoutWriterInput {
-  create: [UserCommentCreateWithoutWriterInput!]
-  connect: [UserCommentWhereUniqueInput!]
-}
-
-input UserCommentCreateWithoutWriterInput {
-  tag: UserCommentTag
-  comment: String
-  related_event: EventCreateOneInput
-}
-
-"""An edge in a connection."""
-type UserCommentEdge {
-  """The item at the end of the edge."""
-  node: UserComment!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum UserCommentOrderByInput {
-  id_ASC
-  id_DESC
-  tag_ASC
-  tag_DESC
-  comment_ASC
-  comment_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type UserCommentPreviousValues {
-  id: ID!
-  tag: UserCommentTag
-  comment: String
-}
-
-type UserCommentSubscriptionPayload {
-  mutation: MutationType!
-  node: UserComment
-  updatedFields: [String!]
-  previousValues: UserCommentPreviousValues
-}
-
-input UserCommentSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [UserCommentSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [UserCommentSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [UserCommentSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: UserCommentWhereInput
-}
-
-enum UserCommentTag {
-  COOPERATIVE
-  KIND
-  FUNNY
-}
-
-input UserCommentUpdateInput {
-  tag: UserCommentTag
-  comment: String
-  writer: UserUpdateOneWithoutCommentsInput
-  related_event: EventUpdateOneInput
-}
-
-input UserCommentUpdateManyWithoutWriterInput {
-  create: [UserCommentCreateWithoutWriterInput!]
-  connect: [UserCommentWhereUniqueInput!]
-  disconnect: [UserCommentWhereUniqueInput!]
-  delete: [UserCommentWhereUniqueInput!]
-  update: [UserCommentUpdateWithWhereUniqueWithoutWriterInput!]
-  upsert: [UserCommentUpsertWithWhereUniqueWithoutWriterInput!]
-}
-
-input UserCommentUpdateWithoutWriterDataInput {
-  tag: UserCommentTag
-  comment: String
-  related_event: EventUpdateOneInput
-}
-
-input UserCommentUpdateWithWhereUniqueWithoutWriterInput {
-  where: UserCommentWhereUniqueInput!
-  data: UserCommentUpdateWithoutWriterDataInput!
-}
-
-input UserCommentUpsertWithWhereUniqueWithoutWriterInput {
-  where: UserCommentWhereUniqueInput!
-  update: UserCommentUpdateWithoutWriterDataInput!
-  create: UserCommentCreateWithoutWriterInput!
-}
-
-input UserCommentWhereInput {
-  """Logical AND on all given filters."""
-  AND: [UserCommentWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [UserCommentWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [UserCommentWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  tag: UserCommentTag
-
-  """All values that are not equal to given value."""
-  tag_not: UserCommentTag
-
-  """All values that are contained in given list."""
-  tag_in: [UserCommentTag!]
-
-  """All values that are not contained in given list."""
-  tag_not_in: [UserCommentTag!]
-  comment: String
-
-  """All values that are not equal to given value."""
-  comment_not: String
-
-  """All values that are contained in given list."""
-  comment_in: [String!]
-
-  """All values that are not contained in given list."""
-  comment_not_in: [String!]
-
-  """All values less than the given value."""
-  comment_lt: String
-
-  """All values less than or equal the given value."""
-  comment_lte: String
-
-  """All values greater than the given value."""
-  comment_gt: String
-
-  """All values greater than or equal the given value."""
-  comment_gte: String
-
-  """All values containing the given string."""
-  comment_contains: String
-
-  """All values not containing the given string."""
-  comment_not_contains: String
-
-  """All values starting with the given string."""
-  comment_starts_with: String
-
-  """All values not starting with the given string."""
-  comment_not_starts_with: String
-
-  """All values ending with the given string."""
-  comment_ends_with: String
-
-  """All values not ending with the given string."""
-  comment_not_ends_with: String
-  writer: UserWhereInput
-  related_event: EventWhereInput
-}
-
-input UserCommentWhereUniqueInput {
-  id: ID
 }
 
 """A connection to a list of items."""
@@ -2280,22 +610,8 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  name: String
   teams: TeamCreateManyWithoutMembersInput
-  interest: InterestCreateManyInput
-  followingEvents: EventCreateManyInput
-  followingTeams: TeamCreateManyWithoutFollowedInput
-  follwoingUsers: UserCreateManyInput
-  comments: UserCommentCreateManyWithoutWriterInput
-}
-
-input UserCreateManyInput {
-  create: [UserCreateInput!]
-  connect: [UserWhereUniqueInput!]
-}
-
-input UserCreateManyWithoutFollowingTeamsInput {
-  create: [UserCreateWithoutFollowingTeamsInput!]
-  connect: [UserWhereUniqueInput!]
 }
 
 input UserCreateManyWithoutTeamsInput {
@@ -2303,38 +619,8 @@ input UserCreateManyWithoutTeamsInput {
   connect: [UserWhereUniqueInput!]
 }
 
-input UserCreateOneInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateOneWithoutCommentsInput {
-  create: UserCreateWithoutCommentsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutCommentsInput {
-  teams: TeamCreateManyWithoutMembersInput
-  interest: InterestCreateManyInput
-  followingEvents: EventCreateManyInput
-  followingTeams: TeamCreateManyWithoutFollowedInput
-  follwoingUsers: UserCreateManyInput
-}
-
-input UserCreateWithoutFollowingTeamsInput {
-  teams: TeamCreateManyWithoutMembersInput
-  interest: InterestCreateManyInput
-  followingEvents: EventCreateManyInput
-  follwoingUsers: UserCreateManyInput
-  comments: UserCommentCreateManyWithoutWriterInput
-}
-
 input UserCreateWithoutTeamsInput {
-  interest: InterestCreateManyInput
-  followingEvents: EventCreateManyInput
-  followingTeams: TeamCreateManyWithoutFollowedInput
-  follwoingUsers: UserCreateManyInput
-  comments: UserCommentCreateManyWithoutWriterInput
+  name: String
 }
 
 """An edge in a connection."""
@@ -2346,139 +632,11 @@ type UserEdge {
   cursor: String!
 }
 
-type UserMatching implements Node {
-  id: ID!
-}
-
-"""A connection to a list of items."""
-type UserMatchingConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [UserMatchingEdge]!
-  aggregate: AggregateUserMatching!
-}
-
-"""An edge in a connection."""
-type UserMatchingEdge {
-  """The item at the end of the edge."""
-  node: UserMatching!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum UserMatchingOrderByInput {
-  id_ASC
-  id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type UserMatchingPreviousValues {
-  id: ID!
-}
-
-type UserMatchingSubscriptionPayload {
-  mutation: MutationType!
-  node: UserMatching
-  updatedFields: [String!]
-  previousValues: UserMatchingPreviousValues
-}
-
-input UserMatchingSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [UserMatchingSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [UserMatchingSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [UserMatchingSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: UserMatchingWhereInput
-}
-
-input UserMatchingWhereInput {
-  """Logical AND on all given filters."""
-  AND: [UserMatchingWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [UserMatchingWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [UserMatchingWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-}
-
-input UserMatchingWhereUniqueInput {
-  id: ID
-}
-
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  name_ASC
+  name_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -2487,6 +645,7 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
+  name: String
 }
 
 type UserSubscriptionPayload {
@@ -2528,40 +687,9 @@ input UserSubscriptionWhereInput {
   node: UserWhereInput
 }
 
-input UserUpdateDataInput {
-  teams: TeamUpdateManyWithoutMembersInput
-  interest: InterestUpdateManyInput
-  followingEvents: EventUpdateManyInput
-  followingTeams: TeamUpdateManyWithoutFollowedInput
-  follwoingUsers: UserUpdateManyInput
-  comments: UserCommentUpdateManyWithoutWriterInput
-}
-
 input UserUpdateInput {
+  name: String
   teams: TeamUpdateManyWithoutMembersInput
-  interest: InterestUpdateManyInput
-  followingEvents: EventUpdateManyInput
-  followingTeams: TeamUpdateManyWithoutFollowedInput
-  follwoingUsers: UserUpdateManyInput
-  comments: UserCommentUpdateManyWithoutWriterInput
-}
-
-input UserUpdateManyInput {
-  create: [UserCreateInput!]
-  connect: [UserWhereUniqueInput!]
-  disconnect: [UserWhereUniqueInput!]
-  delete: [UserWhereUniqueInput!]
-  update: [UserUpdateWithWhereUniqueNestedInput!]
-  upsert: [UserUpsertWithWhereUniqueNestedInput!]
-}
-
-input UserUpdateManyWithoutFollowingTeamsInput {
-  create: [UserCreateWithoutFollowingTeamsInput!]
-  connect: [UserWhereUniqueInput!]
-  disconnect: [UserWhereUniqueInput!]
-  delete: [UserWhereUniqueInput!]
-  update: [UserUpdateWithWhereUniqueWithoutFollowingTeamsInput!]
-  upsert: [UserUpsertWithWhereUniqueWithoutFollowingTeamsInput!]
 }
 
 input UserUpdateManyWithoutTeamsInput {
@@ -2573,83 +701,13 @@ input UserUpdateManyWithoutTeamsInput {
   upsert: [UserUpsertWithWhereUniqueWithoutTeamsInput!]
 }
 
-input UserUpdateOneInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
-}
-
-input UserUpdateOneWithoutCommentsInput {
-  create: UserCreateWithoutCommentsInput
-  connect: UserWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: UserUpdateWithoutCommentsDataInput
-  upsert: UserUpsertWithoutCommentsInput
-}
-
-input UserUpdateWithoutCommentsDataInput {
-  teams: TeamUpdateManyWithoutMembersInput
-  interest: InterestUpdateManyInput
-  followingEvents: EventUpdateManyInput
-  followingTeams: TeamUpdateManyWithoutFollowedInput
-  follwoingUsers: UserUpdateManyInput
-}
-
-input UserUpdateWithoutFollowingTeamsDataInput {
-  teams: TeamUpdateManyWithoutMembersInput
-  interest: InterestUpdateManyInput
-  followingEvents: EventUpdateManyInput
-  follwoingUsers: UserUpdateManyInput
-  comments: UserCommentUpdateManyWithoutWriterInput
-}
-
 input UserUpdateWithoutTeamsDataInput {
-  interest: InterestUpdateManyInput
-  followingEvents: EventUpdateManyInput
-  followingTeams: TeamUpdateManyWithoutFollowedInput
-  follwoingUsers: UserUpdateManyInput
-  comments: UserCommentUpdateManyWithoutWriterInput
-}
-
-input UserUpdateWithWhereUniqueNestedInput {
-  where: UserWhereUniqueInput!
-  data: UserUpdateDataInput!
-}
-
-input UserUpdateWithWhereUniqueWithoutFollowingTeamsInput {
-  where: UserWhereUniqueInput!
-  data: UserUpdateWithoutFollowingTeamsDataInput!
+  name: String
 }
 
 input UserUpdateWithWhereUniqueWithoutTeamsInput {
   where: UserWhereUniqueInput!
   data: UserUpdateWithoutTeamsDataInput!
-}
-
-input UserUpsertNestedInput {
-  update: UserUpdateDataInput!
-  create: UserCreateInput!
-}
-
-input UserUpsertWithoutCommentsInput {
-  update: UserUpdateWithoutCommentsDataInput!
-  create: UserCreateWithoutCommentsInput!
-}
-
-input UserUpsertWithWhereUniqueNestedInput {
-  where: UserWhereUniqueInput!
-  update: UserUpdateDataInput!
-  create: UserCreateInput!
-}
-
-input UserUpsertWithWhereUniqueWithoutFollowingTeamsInput {
-  where: UserWhereUniqueInput!
-  update: UserUpdateWithoutFollowingTeamsDataInput!
-  create: UserCreateWithoutFollowingTeamsInput!
 }
 
 input UserUpsertWithWhereUniqueWithoutTeamsInput {
@@ -2707,26 +765,52 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
   teams_every: TeamWhereInput
   teams_some: TeamWhereInput
   teams_none: TeamWhereInput
-  interest_every: InterestWhereInput
-  interest_some: InterestWhereInput
-  interest_none: InterestWhereInput
-  followingEvents_every: EventWhereInput
-  followingEvents_some: EventWhereInput
-  followingEvents_none: EventWhereInput
-  followingTeams_every: TeamWhereInput
-  followingTeams_some: TeamWhereInput
-  followingTeams_none: TeamWhereInput
-  follwoingUsers_every: UserWhereInput
-  follwoingUsers_some: UserWhereInput
-  follwoingUsers_none: UserWhereInput
-  comments_every: UserCommentWhereInput
-  comments_some: UserCommentWhereInput
-  comments_none: UserCommentWhereInput
 }
 
 input UserWhereUniqueInput {
   id: ID
+  name: String
 }

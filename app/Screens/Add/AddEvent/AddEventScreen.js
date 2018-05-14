@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, TouchableOpacity, TextInput } from 'react-native'
-import { Container, H1, H3, Content, Button, Text, Input, Form, Item } from 'native-base'
+import { Container, H1, H3, Content, Button, Text, Input, Form, Item, Picker, Icon, Header, Left, Body, Right, Title } from 'native-base'
 
 import CommonHeader from '../../../Components/CommonHeader'
 
@@ -8,17 +8,24 @@ class AddEventScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            category: '주제 선택',
-            eventType: '유형 선택',
-            eventOptions: {}
+            eventCategory: '롤',
+            eventType: 'tournament',
+            eventOptions: {},
         }
+        this.onValueChange = this.onValueChange.bind(this)
         this._setCategory = this._setCategory.bind(this)
         this._setEventType = this._setEventType.bind(this)
         this._setEventOptions = this._setEventOptions.bind(this)
     }
 
-    _setCategory(category) {
-        this.setState({ category })
+    onValueChange(key, value) {
+        this.setState({
+          [key]: value
+        });
+    }
+
+    _setCategory(eventCategory) {
+        this.setState({ eventCategory })
     }
 
     _setEventType(eventType) {
@@ -38,16 +45,38 @@ class AddEventScreen extends React.Component {
                     <Input style={{backgroundColor: 'white'}} />
                 <H3 style={{margin: 10}}>이벤트 주제</H3>
                     <TouchableOpacity 
-                    onPress={() => this.props.navigation.navigate('SelectCategory', { _setCategory: this._setCategory })}
-                    style={{backgroundColor: 'white', height: 50, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text>{this.state.category}</Text>
+                        onPress={() => this.props.navigation.navigate('SelectCategory', { _setCategory: this._setCategory })}
+                        style={{backgroundColor: 'white', height: 50, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text>{this.state.eventCategory}</Text>
                     </TouchableOpacity>
                 <H3 style={{margin: 10}}>이벤트 유형</H3>
-                    <TouchableOpacity 
-                    onPress={() => this.props.navigation.navigate('SelectEventType', { _setEventType: this._setEventType })}
-                    style={{backgroundColor: 'white', height: 50, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text>{this.state.eventType}</Text>
-                    </TouchableOpacity>
+                    <Form>
+                    <Picker
+                    renderHeader={backAction =>
+                        <Header>
+                            <Left>
+                                <Button transparent onPress={backAction}>
+                                    <Icon name="arrow-back" />
+                                </Button>
+                            </Left>
+                            <Body>
+                                <Title>이벤트 유형 선택</Title>
+                            </Body>
+                            <Right />
+                        </Header>
+                    }
+                    iosIcon={<Icon name="ios-arrow-down-outline" />}
+                    style={{ width: "100%", backgroundColor: "white" }}
+                    itemStyle={{ justifyContent: 'space-between' }}
+                    selectedValue={this.state.eventType}
+                    onValueChange={(value) => this.onValueChange("eventType", value)}
+                    >
+                    <Picker.Item label="토너먼트" value="tournament" />
+                    <Picker.Item label="리그" value="league" />
+                    <Picker.Item label="개인 참가" value="individualEvent" />
+                    <Picker.Item label="기타" value="etcEvent" />
+                    </Picker>
+                    </Form>
                 <H3 style={{margin: 10}}>이벤트 설명</H3>
                     <Input multiline style={{backgroundColor: 'white', height: 80}} />
                 <H3 style={{margin: 10}}>고급 설정</H3>

@@ -1,8 +1,12 @@
 import React from 'react'
 import { View, Image } from 'react-native'
 import { Container, Content, Text, Tabs, Tab, Button, ScrollableTab, H2, H3 } from 'native-base'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
 
 import EventHeader from '../../Components/EventHeader'
+import LoadingScreen from '../SystemScreens/LoadingScreen'
+import ErrorScreen from '../SystemScreens/ErrorScreen'
 
 class EventDetailsScreen extends React.Component {
     constructor(props) {
@@ -14,16 +18,30 @@ class EventDetailsScreen extends React.Component {
 
     render() {
         return (
+            <Query 
+                query={EVENT_QUERY}
+                variables={{
+                    id: this.props.navigation.state.params.eventId
+                }}
+            >
+            {({ data, loading, error }) => {
+            if (loading) {
+                return <LoadingScreen />
+            }
+            if (error) {
+                return <ErrorScreen />
+            }
+            return (
             <Container>
-                <EventHeader navigation={this.props.navigation}/>
-            <Content>
+                <EventHeader navigation={this.props.navigation} title={data.event.name}/>
+                <Content>
                 <View style={{height: 200, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <Image 
                     style={{ width: "100%", height: "100%" }}
                     resizeMode="stretch"
                     source={{uri: "https://a.b9.to/uploads/189/1898e01b-0796-443d-b0bc-00ee42b1c8ad.png" }} />
                 </View>
-        <Tabs scrollWithoutAnimation renderTabBar={() => <ScrollableTab />}>
+                <Tabs scrollWithoutAnimation renderTabBar={() => <ScrollableTab />}>
                     <Tab heading="기본">
                         <Button 
                         block style={{margin: 10}}>
@@ -60,10 +78,22 @@ class EventDetailsScreen extends React.Component {
                         <Text>기록</Text>
                     </Tab>
                 </Tabs>
-            </Content>
+                </Content>
             </Container>
+            )
+            }}
+            </Query>
         )
     }
 }
+
+const EVENT_QUERY = gql`
+query eventQuery($id: ID!) {
+    event(id: $id) {
+        id
+        name
+    }
+}
+`
 
 export default EventDetailsScreen

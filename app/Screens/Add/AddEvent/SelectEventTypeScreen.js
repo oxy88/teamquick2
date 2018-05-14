@@ -16,15 +16,7 @@ class SelectEventTypeScreen extends React.Component {
                     this.props.navigation.goBack()
                 }}
                 style={{height: 50, borderWidth: 1, margin: 10}}>
-                    <Text>개인 매칭</Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                onPress={() => {
-                    this.props.navigation.state.params._setEventType('1대1 팀전')
-                    this.props.navigation.goBack()
-                }}
-                style={{height: 50, borderWidth: 1, margin: 10}}>
-                    <Text>1대1 팀전</Text>
+                    <Text>개인 참가</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                 onPress={() => {

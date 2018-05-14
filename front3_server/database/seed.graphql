@@ -1,24 +1,146 @@
 mutation {
-  createUser(data: {
-    email: "developer@example.com"
-    password: "$2a$10$hACwQ5/HQI6FhbIISOUVeusy3sKyUDhSq36fF5d/54aAdiygJPFzm" # plaintext password: "nooneknows"
-    name: "Sarah"
-    posts: {
-      create: [{
-        title: "Hello World"
-        text: "This is my first blog post ever!"
-        isPublished: true
-      }, {
-        title: "My Second Post"
-        text: "My first post was good, but this one is better!"
-        isPublished: true
-      }, {
-        title: "Solving World Hunger"
-        text: "This is a draft..."
-        isPublished: false
-      }]
+  createUserOne: createUser(
+    data: {
+      name: "user1"
     }
-  }) {
+  ) {
+    id
+  }
+
+  createUserTwo: createUser(
+    data: {
+      name: "user2"
+    }
+  ) {
+    id
+  }
+
+  createUserThree: createUser(
+    data: {
+      name: "user3"
+    }
+  ) {
+    id
+  }
+
+  createUserFour: createUser(
+    data: {
+      name: "user4"
+    }
+  ) {
+    id
+  }
+
+  createUserFive: createUser(
+    data: {
+      name: "user5"
+    }
+  ) {
+    id
+  }
+
+  createEventOne: createEvent(
+    data: {
+      name: "Event1"
+    }
+  ) {
+    id
+  }
+
+  createEventTwo: createEvent(
+    data: {
+      name: "Event2"
+    }
+  ) {
+    id
+  }
+
+  createEventThree: createEvent(
+    data: {
+      name: "Event3"
+    }
+  ) {
+    id
+  }
+
+  createEventFour: createEvent(
+    data: {
+      name: "Event4"
+    }
+  ) {
+    id
+  }
+
+  createEventFive: createEvent(
+    data: {
+      name: "Event5"
+    }
+  ) {
+    id
+  }
+
+  createTeamOne: createTeam(
+    data: {
+      name: "team1"
+      members: {
+        connect: {
+          name: "user1"
+        }
+      }
+    }
+  ) {
+    id
+  }
+
+  createTeamTwo: createTeam(
+    data: {
+      name: "team2"
+      members: {
+        connect: {
+          name: "user2"
+        }
+      }
+    }
+  ) {
+    id
+  }
+
+  createTeamThree: createTeam(
+    data: {
+      name: "team3"
+      members: {
+        connect: {
+          name: "user3"
+        }
+      }
+    }
+  ) {
+    id
+  }
+
+  createTeamFour: createTeam(
+    data: {
+      name: "team4"
+      members: {
+        connect: {
+          name: "user4"
+        }
+      }
+    }
+  ) {
+    id
+  }
+
+  createTeamFive: createTeam(
+    data: {
+      name: "team5"
+      members: {
+        connect: {
+          name: "user5"
+        }
+      }
+    }
+  ) {
     id
   }
 }

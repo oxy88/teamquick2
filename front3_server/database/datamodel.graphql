@@ -1,150 +1,28 @@
 type User {
   id: ID! @unique
-  teams: [Team!]! @relation(name: "UserTeams")
-  interest: [Interest!]!
-  followingEvents: [Event!]!
-  followingTeams: [Team!]! @relation(name: "FollowingTeams")
-  follwoingUsers: [User!]!
-  comments: [UserComment!]!
-}
-
-type Interest {
-  id: ID! @unique
-
-}
-
-type UserComment {
-  id: ID! @unique
-  writer: User
-  tag: UserCommentTag
-  comment: String
-  related_event: Event
-}
-
-enum UserCommentTag {
-  COOPERATIVE,
-  KIND,
-  FUNNY,
+  name: String @unique
+  teams: [Team!]! @relation(name: "UsersTeams")
 }
 
 type Team {
   id: ID! @unique
   name: String
-  topic: TeamTopic
-  description: String
-  members: [User!]! @relation(name: "UserTeams")
-  followed: [User!]! @relation(name: "FollowingTeams")
-  comments: [TeamComment!]!
-}
-
-type TeamComment {
-  id: ID! @unique
-  writer: User
-  tag: TeamCommentTag
-  comment: String
-  related_event: Event
-}
-
-enum TeamCommentTag {
-  KIND,
-  FUNNY
-}
-
-enum TeamTopic {
-  LOL,
-  PUBG,
-  OVERWATCH,
-  ETC_GAME,
-  SOCCER,
-  BASKET_BALL,
-  ETC_SPORTS,
-  FREE
-}
-
-type UserMatching {
-  id: ID! @unique
+  members: [User!]! @relation(name: "UsersTeams")
+  logoUrl: String @default(value: "https://d30y9cdsu7xlg0.cloudfront.net/png/14261-200.png")
 }
 
 type Event {
   id: ID! @unique
-  topic: String
-  place: String
-  type: String
-  startDateTime: DateTime
+  name: String
+  iconUrl: String @default(value: "https://d30y9cdsu7xlg0.cloudfront.net/png/404-200.png")
 }
 
-type Scrimmage {
-  id: ID! @unique
-}
-
-type Pubg {
-  id: ID! @unique
-  gameType: PubgGameType
-  server: PubgServer
-}
-
-enum PubgGameType {
-  SQUAD,
-  DUO
-}
-
-enum PubgServer {
-  KAKAO,
-  STEAM
-}
-
-type Lol {
-  id: ID! @unique
-  gameType: LolGameType
-  lolTier: LolTier
-  lolRole: LolRole
-}
-
-enum LolGameType {
-  DUO_RANK,
-  FLEX_RANK,
-}
-
-enum LolTier {
-  DIAMOND,
-  PLATINUM,
-  GOLD,
-  SILVER,
-  BRONZE
-}
-
-enum LolRole {
-  FLEX,
-  TOP,
-  JUNGLE,
-  MID,
-  ADC,
-  SUPPORT
-}
-
-type Overwatch {
-  id: ID! @unique
-  gameType: OverwatchGameType
-  overwatchTier: OverwatchTier
-  overwatchRole: OverwatchRole
-}
-
-enum OverwatchGameType {
-  COMPETITIVE,
-  QUICK
-}
-
-enum OverwatchTier {
-  DIAMOND,
-  PLATINUM,
-  GOLD,
-  SILVER,
-  BRONZE
-}
-
-enum OverwatchRole {
-  FLEX,
-  TANK,
-  DPS,
-  HEAL
+enum Category {
+  LOL
+  PUBG
+  OVERWATCH
+  ETC_GAME
+  SOCCER
+  BASKET_BALL
+  ETC_SPORTS
 }
