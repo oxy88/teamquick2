@@ -9,3 +9,6 @@ export const GENYMOTION_API = "http://10.0.3.2:4000" // 시뮬레이터
 export const TOKEN = "user_token"
 // export const USER_ID = "USER_ID"
 // export const TIME_OUT_MINUTE = 3
+
+export const GOOGLE_MAP_IOS_KEY = "AIzaSyC6r1c2NgpJf2ATKfnw4kDBMMtbZ1ADvhU"
+export const GOOGLE_MAP_ANDROID_KEY = "AIzaSyA6MuOD2uQXZElltjnfsO3H3AnO3T4X7DE"

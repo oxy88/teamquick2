@@ -35,6 +35,11 @@ class AddMainScreen extends React.Component {
                 style={{width: 100, height: 100, borderWidth: 1}}>
                     <Text>연습경기 만들기</Text>
                 </TouchableOpacity>
+                <TouchableOpacity 
+                onPress={() => this.props.navigation.navigate('AddInterest')}
+                style={{width: 100, height: 100, borderWidth: 1}}>
+                    <Text>주제별 프로필 추가</Text>
+                </TouchableOpacity>
             </Content>
             </Container>
         )

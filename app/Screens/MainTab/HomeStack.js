@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation'
 
 import HomeMainScreen from './HomeMainScreen'
 import EventDetailsScreen from '../EventDetails/EventDetailsScreen'
-import TeamDetailsScreen from '../TeamDetails/TeamDetailsScreen'
+import TeamDetailsDivider from '../TeamDetails/TeamDetailsDivider'
 import UserDetailsScreen from '../UserDetails/UserDetailsScreen'
 
 const HomeStack = StackNavigator({
@@ -15,7 +15,7 @@ const HomeStack = StackNavigator({
         screen: EventDetailsScreen
     },
     TeamDetails: {
-        screen: TeamDetailsScreen
+        screen: TeamDetailsDivider
     },
     UserDetails: {
         screen: UserDetailsScreen

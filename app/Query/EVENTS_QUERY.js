@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 const EVENTS_QUERY = gql`
-query events_query {
+query eventsQuery {
     events {
         id
         name

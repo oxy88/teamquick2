@@ -2,7 +2,16 @@
 endpoint: ${env:PRISMA_ENDPOINT}
 
 # The file containing the definition of your data model.
-datamodel: datamodel.graphql
+datamodel: 
+  - datamodel.graphql
+  - ./game/lol.graphql
+  - ./game/pubg.graphql
+  - ./game/overwatch.graphql
+  - ./game/etcGames.graphql
+  - ./sports/soccer.graphql
+  - ./sports/basketBall.graphql
+  - ./sports/etcSports.graphql
+  - any.graphql
 
 # Seed your service with initial data based on `seed.graphql`.
 seed:

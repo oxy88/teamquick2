@@ -4,6 +4,8 @@ import { Container, H1, H3, Content, Button, Text, Input, Form, Item } from 'nat
 
 import CommonHeader from '../../../Components/CommonHeader'
 
+import MY_PROFILE_QUERY from '../../../Query/MY_PROFILE_QUERY'
+
 class AddScrimmageScreen extends React.Component {
     constructor(props) {
         super(props)

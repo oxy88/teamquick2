@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Image, TouchableOpacity } from 'react-native'
-import { H1, H2, Container, Content, Text } from 'native-base'
+import { AsyncStorage, View, Image, TouchableOpacity } from 'react-native'
+import { H1, H2, Container, Content, Text, Button } from 'native-base'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
@@ -12,6 +12,9 @@ import LoadingScreen from '../SystemScreens/LoadingScreen'
 import ErrorScreen from '../SystemScreens/ErrorScreen'
 
 import EVENTS_QUERY from '../../Query/EVENTS_QUERY'
+import MY_PROFILE_QUERY from '../../Query/MY_PROFILE_QUERY'
+
+import { TOKEN } from '../../config/constants'
 
 class HomeMainScreen extends React.Component {
     constructor(props) {
@@ -23,6 +26,8 @@ class HomeMainScreen extends React.Component {
 
     render() {
         return (
+            <Query query={MY_PROFILE_QUERY}>
+            {({ data: { myProfile }, loading: loadingMyProfile, error: errorMyProfile }) => (
             <Query query={EVENTS_QUERY}>
             {({ data, loading, error }) => {
             if (loading) {
@@ -98,6 +103,8 @@ class HomeMainScreen extends React.Component {
             </Container>
             )
             }}
+            </Query>
+            )}
             </Query>
         )
     }

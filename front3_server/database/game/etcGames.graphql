@@ -1,0 +1,6 @@
+type EtcGamesProfile {
+    id: ID! @unique
+    gameName: String!
+    name: String
+    stats: String
+}

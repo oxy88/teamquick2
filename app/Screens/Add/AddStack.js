@@ -8,6 +8,7 @@ import SelectCategoryScreen from './AddTeam/SelectCategoryScreen'
 import AddEventScreen from './AddEvent/AddEventScreen'
 import SelectEventTypeScreen from './AddEvent/SelectEventTypeScreen'
 import AddScrimmageScreen from './AddScrimmage/AddScrimmageScreen'
+import AddInterestScreen from './AddInterest/AddInterestScreen'
 
 const AddStack = StackNavigator({
     AddMain: {
@@ -18,6 +19,9 @@ const AddStack = StackNavigator({
     },
     AddScrimmage: {
         screen: AddScrimmageScreen
+    },
+    AddInterest: {
+        screen: AddInterestScreen
     },
     SelectCategory: {
         screen: SelectCategoryScreen

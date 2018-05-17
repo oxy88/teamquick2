@@ -7,6 +7,8 @@ import I18n from '../../../i18n/i18n'
 
 import CommonHeader from '../../../Components/CommonHeader'
 
+import MY_PROFILE_QUERY from '../../../Query/MY_PROFILE_QUERY'
+
 class AddTeamScreen extends React.Component {
     constructor(props) {
         super(props)
@@ -20,11 +22,27 @@ class AddTeamScreen extends React.Component {
 
     _setCategory(category) {
         this.setState({ category })
-
     }
+
     render() {
         return (
-            <Mutation mutation={CREATE_TEAM_MUTATION}>
+            <Mutation 
+                mutation={CREATE_TEAM_MUTATION}
+                update={(cache, { data }) => {
+                    const { myProfile } = cache.readQuery({
+                        query: MY_PROFILE_QUERY
+                    })
+                    cache.writeQuery({
+                        query: MY_PROFILE_QUERY,
+                        data: {
+                            myProfile: {
+                                ...myProfile,
+                                teams: myProfile.teams.concat([ data.createTeam ])
+                            }
+                        }
+                    })
+                }}
+            >
             {( createTeam, { data, loading, error }) => {
             return (
             <Container>
@@ -84,6 +102,8 @@ mutation createTeamMutation($teamName: String!, $category: Category!, $descripti
         description: $description
     ) {
         id
+        category
+        name
     }
 }
 `

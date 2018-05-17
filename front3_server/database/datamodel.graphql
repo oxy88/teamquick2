@@ -4,6 +4,7 @@ type User {
   teams: [Team!]! @relation(name: "UsersTeams")
   events: [Event!]! @relation(name: "UserEvents")
   avatarUrl: String @default(value: "https://image.flaticon.com/icons/svg/0/93.svg")
+  interests: [Interest!]! @relation(name: "UserInterests")
 }
 
 type Team {
@@ -40,5 +41,21 @@ enum Category {
 enum EventType {
   TOURNAMENT
   LEAGUE
+  SCRIMMAGE
   ETC
+}
+
+type Interest {
+  id: ID! @unique
+  user: User! @relation(name: "UserInterests")
+  category: Category
+  description: String
+  lol: LolProfile
+  pubg: PubgProfile
+  overwatch: OverwatchProfile
+  etcGames: EtcGamesProfile
+  soccer: SoccerProfile
+  basketBall: BasketBallProfile
+  etcSports: EtcSportsProfile
+  any: AnyProfile
 }

@@ -35,12 +35,15 @@ class TeamDetailsScreen extends React.Component {
 
                 return (
                     <Container>
-                    <TeamHeader navigation={this.props.navigation} title={data.team.name}/>
+                    <TeamHeader navigation={this.props.navigation} title={this.props.team.name}/>
                     <Content>
                         <TeamMenu teamId={this.props.navigation.state.params.teamId} />
                     <Tabs scrollWithoutAnimation>
                         <Tab heading="홈">
-                            <HomeTab members={data.team.members}/>
+                            <HomeTab 
+                                navigation={this.props.navigation}
+                                members={this.props.team.members}
+                            />
                         </Tab>
                         <Tab heading="일정">
                             <ScheduleTab />

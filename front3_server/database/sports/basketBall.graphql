@@ -1,0 +1,12 @@
+type BasketBallProfile {
+    id: ID! @unique
+    description: String
+    role: BasketBallRole!
+}
+
+enum BasketBallRole {
+    FILL
+    GUARD
+    FORWARD
+    CENTER
+}

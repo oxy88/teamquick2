@@ -6,6 +6,7 @@ import event from './event'
 import events from './events'
 import team from './team'
 import teams from './teams'
+import myProfile from './myProfile'
 
 export default {
     user,
@@ -14,6 +15,7 @@ export default {
     events,
     team,
     teams,
+    myProfile,
     myName: async(parent, args, ctx, info) => {
         const userId = getUserId(ctx)
         const user = await ctx.db.query.user({
@@ -24,5 +26,9 @@ export default {
         name
         }`)
         return user.name
+    },
+    myId: async(parent, args, ctx, info) => {
+        const userId = getUserId(ctx)
+        return userId
     },
 }

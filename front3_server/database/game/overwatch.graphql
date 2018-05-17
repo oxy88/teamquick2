@@ -1,0 +1,22 @@
+type OverwatchProfile {
+  id: ID! @unique
+  name: String!
+  rating: Int
+  tier: OverwatchTier!
+  role: OverwatchRole!
+}
+
+enum OverwatchRole {
+    FILL
+    TANK
+    DPS
+    HEAL
+}
+
+enum OverwatchTier {
+    BRONZE
+    SILVER
+    GOLD
+    PLATINUM
+    DIAMOND
+}

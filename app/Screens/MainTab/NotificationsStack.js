@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation'
 
 import NotificationsMainScreen from './NotificationsMainScreen'
 import EventDetailsScreen from '../EventDetails/EventDetailsScreen'
-import TeamDetailsScreen from '../TeamDetails/TeamDetailsScreen'
+import TeamDetailsDivider from '../TeamDetails/TeamDetailsDivider'
 import UserDetailsScreen from '../UserDetails/UserDetailsScreen'
 
 const NotificationsStack = StackNavigator({
@@ -15,7 +15,7 @@ const NotificationsStack = StackNavigator({
         screen: EventDetailsScreen
     },
     TeamDetails: {
-        screen: TeamDetailsScreen
+        screen: TeamDetailsDivider
     },
     UserDetails: {
         screen: UserDetailsScreen

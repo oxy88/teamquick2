@@ -5,7 +5,7 @@ import { StackNavigator } from 'react-navigation'
 import ProfileMainScreen from './ProfileMainScreen'
 import DirectMessageListScreen from './ProfileStack/DirectMessageListScreen'
 import EventDetailsScreen from '../EventDetails/EventDetailsScreen'
-import TeamDetailsScreen from '../TeamDetails/TeamDetailsScreen'
+import TeamDetailsDivider from '../TeamDetails/TeamDetailsDivider'
 import MyTeamDetailsScreen from '../TeamDetails/MyTeamDetailsScreen'
 import UserDetailsScreen from '../UserDetails/UserDetailsScreen'
 import EditIntroductionScreen from './ProfileStack/EditIntroductionScreen'
@@ -24,7 +24,7 @@ const ProfileStack = StackNavigator({
         screen: EventDetailsScreen
     },
     TeamDetails: {
-        screen: TeamDetailsScreen
+        screen: TeamDetailsDivider
     },
     MyTeamDetails: {
         screen: MyTeamDetailsScreen

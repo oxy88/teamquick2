@@ -1,5 +1,8 @@
+import { getUserId } from '../../utils'
+
 const createEvent = async (parent, args, ctx, info) => {
-    const { ownerId, name, category, type, startTime, place } = args
+    const userId = getUserId(ctx)
+    const { name, category, type, startTime, place } = args
     return ctx.db.mutation.createEvent({
         data: {
             name,
@@ -9,11 +12,11 @@ const createEvent = async (parent, args, ctx, info) => {
             place,
             owner: {
                 connect: {
-                    id: ownerId
+                    id: userId
                 }
             }
         }
-    })
+    }, info)
 }
 
 export default createEvent

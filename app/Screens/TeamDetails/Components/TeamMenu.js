@@ -4,10 +4,32 @@ import { Left, Text, Right, Icon } from 'native-base'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 
+import TEAM_QUERY from '../../../Query/TEAM_QUERY'
+
 class TeamMenu extends React.Component {
     render() {
         return (
-            <Mutation mutation={JOIN_TEAM_MUTATION}>
+            <Mutation 
+                mutation={JOIN_TEAM_MUTATION}
+                update={(cache, { data }) => {
+                    // const { team } = cache.readQuery({ 
+                    //     query: TEAM_QUERY,
+                    //     variables: {
+                    //         id: this.props.teamId
+                    //     }
+                    // })
+                    
+                    // cache.writeQuery({
+                    //     query: TEAM_QUERY,
+                    //     variables: {
+                    //         id: this.props.teamId
+                    //     },
+                    //     data: {
+                    //         team: data.team
+                    //     }
+                    // })
+                }}
+            >
             {( joinTeam, { data, loading, error }) => {
                 return (
             <View style={{height: 230, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -68,6 +90,12 @@ mutation joinTeamMutation($teamId: ID!) {
         teamId: $teamId
     ) {
         id
+        name
+        logoUrl
+        members {
+            id
+            name            
+        }
     }
 }
 `

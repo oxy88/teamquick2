@@ -5,6 +5,7 @@ query teamQuery($id: ID!) {
     team(id: $id) {
         id
         name
+        description
         logoUrl
         members {
             id

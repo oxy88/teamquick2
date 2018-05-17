@@ -1,0 +1,21 @@
+type SoccerProfile {
+    id: ID! @unique
+    description: String
+    role: SoccerRole
+    position: SoccerPosition
+}
+
+enum SoccerRole {
+    FILL
+    GK
+    D
+    M
+    F
+}
+
+enum SoccerPosition {
+    FILL
+    L
+    C
+    R
+}

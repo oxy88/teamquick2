@@ -8,7 +8,8 @@ import MyEventDetailsScreen from '../EventDetails/MyEventDetailsScreen'
 import GoingEventDetailsScreen from '../EventDetails/GoingEventDetailsScreen'
 import UserMatchingEventDetailsScreen from '../EventDetails/UserMatchingEventDetailsScreen'
 import OneOnOneEventDetailsScreen from '../EventDetails/OneOnOneEventDetailsScreen'
-import TeamDetailsScreen from '../TeamDetails/TeamDetailsScreen'
+// import TeamDetailsScreen from '../TeamDetails/TeamDetailsScreen'
+import TeamDetailsDivider from '../TeamDetails/TeamDetailsDivider'
 import UserDetailsScreen from '../UserDetails/UserDetailsScreen'
 
 const LikeStack = StackNavigator({
@@ -31,7 +32,7 @@ const LikeStack = StackNavigator({
         screen: OneOnOneEventDetailsScreen
     },
     TeamDetails: {
-        screen: TeamDetailsScreen
+        screen: TeamDetailsDivider
     },
     UserDetails: {
         screen: UserDetailsScreen
