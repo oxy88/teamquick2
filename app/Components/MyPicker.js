@@ -27,7 +27,7 @@ class MyPicker extends React.Component {
                 iosIcon={<Icon name="ios-arrow-down-outline" />}
                 style={{ width: "100%", backgroundColor: 'white' }}
                 itemStyle={{ justifyContent: 'space-between' }}
-                selectedValue={this.props.currentProp}
+                selectedValue={this.props.currentProp} 
                 onValueChange={(value) => this.props.onValueChange(value)}
                 >
                 {this.props.options.map(option => {

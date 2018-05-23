@@ -9,6 +9,8 @@ import AddEventScreen from './AddEvent/AddEventScreen'
 import SelectEventTypeScreen from './AddEvent/SelectEventTypeScreen'
 import AddScrimmageScreen from './AddScrimmage/AddScrimmageScreen'
 import AddInterestScreen from './AddInterest/AddInterestScreen'
+import SelectPlaceScreen from './AddEvent/SelectPlaceScreen'
+import AddressAutoCompleteScreen from './AddEvent/AddressAutoCompleteScreen'
 
 const AddStack = StackNavigator({
     AddMain: {
@@ -31,6 +33,12 @@ const AddStack = StackNavigator({
     },
     SelectEventType: {
         screen: SelectEventTypeScreen
+    },
+    SelectPlace: {
+        screen: SelectPlaceScreen
+    },
+    AddressAutoComplete: {
+        screen: AddressAutoCompleteScreen
     }
 }, {
     headerMode: 'none'

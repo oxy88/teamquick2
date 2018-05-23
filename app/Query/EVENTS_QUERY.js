@@ -5,6 +5,14 @@ query eventsQuery {
     events {
         id
         name
+        category
+        type
+        startTime
+        place {
+            description
+            lat
+            lng
+        }
         iconUrl
     }
 }

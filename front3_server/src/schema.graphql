@@ -1,4 +1,4 @@
-# import Team, Event, Category, Interest, EventType, LolTier, LolRole, PubgServer, OverwatchTier, OverwatchRole, SoccerRole, SoccerPosition, BasketBallRole from "./generated/prisma.graphql"
+# import Team, Event, Category, Interest, EventType, LolTier, LolRole, PubgServer, OverwatchTier, OverwatchRole, SoccerRole, SoccerPosition, BasketBallRole, Place from "./generated/prisma.graphql"
 
 type Query {
   user(id: ID!): User
@@ -16,7 +16,8 @@ type Mutation {
   login(name: String!): AuthPayload!
   createTeam(teamName: String!, category: Category!, description: String!): Team!
   joinTeam(teamId: ID!): Team!
-  createEvent(name: String, category: Category!, type: EventType!, startTime: DateTime!, place: String!): Event!
+  createEvent(name: String, category: Category!, type: EventType!, startTime: DateTime, description: String, lat: Float, lng: Float): Event
+  createScrimmage(hostTeamId: ID!, startTime: DateTime, description: String, lat: Float, lng: Float): Event!
   createInterestLol(name: String, tier: LolTier!, role: LolRole!): Interest!
   createInterestPubg(name: String, server: PubgServer!): Interest!
   createInterestOverwatch(name: String, tier: OverwatchTier!, role: OverwatchRole!): Interest!

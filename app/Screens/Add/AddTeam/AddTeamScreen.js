@@ -104,6 +104,7 @@ mutation createTeamMutation($teamName: String!, $category: Category!, $descripti
         id
         category
         name
+        logoUrl
     }
 }
 `

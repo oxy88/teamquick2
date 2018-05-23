@@ -17,6 +17,7 @@ export default {
     teams,
     myProfile,
     myName: async(parent, args, ctx, info) => {
+        try {
         const userId = getUserId(ctx)
         const user = await ctx.db.query.user({
             where: {
@@ -26,6 +27,9 @@ export default {
         name
         }`)
         return user.name
+        } catch(e) {
+            return "알 수 없음"
+        }
     },
     myId: async(parent, args, ctx, info) => {
         const userId = getUserId(ctx)
