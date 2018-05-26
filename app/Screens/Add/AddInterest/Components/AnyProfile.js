@@ -84,7 +84,16 @@ mutation createInterestAnyMutation($topic: String!, $description: String) {
     ) {
         id
         category
-        description
+        categoryIconUrl
+        firstLine
+        secondLine
+        thirdLine
+        teams {
+            id
+            category
+            name
+            logoUrl
+        }
     }
 }
 `

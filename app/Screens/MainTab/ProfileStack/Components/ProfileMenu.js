@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
-import { Text, Left, Right, Icon } from 'native-base'
+import { Text, Left, Right, Icon, Thumbnail } from 'native-base'
+import { withNavigation } from 'react-navigation'
 
 class ProfileMenu extends React.Component {
     render() {
@@ -14,9 +15,7 @@ class ProfileMenu extends React.Component {
                     <Text style={{borderWidth: 1}}>서울</Text>
                     </Right>
                 </View>
-                <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 10, width: 60, height: 60, borderRadius: 60, borderWidth: 1}}>
-                    <Text>프로필 사진</Text>
-                </View>
+                <Thumbnail source={{uri: this.props.myProfile.avatarUrl}}/>
                 <View style={{flexDirection:"row", alignItems: 'center'}}>
                     <Icon name="heart" />  
                     <Text> 500</Text>
@@ -24,18 +23,15 @@ class ProfileMenu extends React.Component {
                         <Text>협조적</Text>
                     </View>
                 </View>
-                <Text>본인이 입력한 프로필이에용ㅎㅎㅎ</Text>
+                <Text>{this.props.myProfile.introduction}</Text>
                 <View style={{marginTop: 10, width: "95%", flexDirection:"row", justifyContent: 'space-around', alignItems: 'center'}}>
                     <TouchableOpacity 
                     onPress={() => this.props.navigation.navigate('DirectMessageList')}
                     style={{width: "25%", height: 40, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
                         <Text>귓속말</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{width: "25%", height: 40, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text>팀 구함</Text>
-                    </TouchableOpacity>
                     <TouchableOpacity 
-                    onPress={() => this.props.navigation.navigate('EditIntroduction')}
+                    onPress={() => this.props.navigation.navigate('EditIntroduction', { introduction: this.props.myProfile.introduction})}
                     style={{width: "25%", height: 40, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
                         <Text>소개 편집</Text>
                     </TouchableOpacity>
@@ -48,4 +44,4 @@ class ProfileMenu extends React.Component {
     }
 }
 
-export default ProfileMenu
+export default withNavigation(ProfileMenu)

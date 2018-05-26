@@ -1,10 +1,12 @@
 type User {
   id: ID! @unique
   name: String @unique
+  introduction: String
   teams: [Team!]! @relation(name: "UsersTeams")
   events: [Event!]! @relation(name: "UserEvents")
-  avatarUrl: String @default(value: "https://image.flaticon.com/icons/svg/0/93.svg")
+  avatarUrl: String @default(value: "https://cdn3.iconfinder.com/data/icons/black-easy/512/535106-user_512x512.png")
   interests: [Interest!]! @relation(name: "UserInterests", onDelete: CASCADE)
+  likeTeam: [Team!]! @relation(name: "UserLikeTeams")
 }
 
 type Team {
@@ -16,6 +18,7 @@ type Team {
   logoUrl: String @default(value: "https://d30y9cdsu7xlg0.cloudfront.net/png/14261-200.png")
   hostScrimmage: Scrimmage @relation(name: "ScrimmageHostTeam")
   guestScrimmage: Scrimmage @relation(name: "ScrimmageGuestTeam")
+  liked: [User!]! @relation(name: "UserLikeTeams")
 }
 
 type Event {
@@ -27,7 +30,7 @@ type Event {
   startTime: DateTime
   place: Place @relation(name: "EventPlace", onDelete: CASCADE)
   owner: User @relation(name: "UserEvents")
-  scrimmage: Scrimmage @relation(name: "EventScrimmage", onDelete: CASCADE)
+  scrimmage: Scrimmage @relation(name: "EventScrimmage")
 }
 
 type Scrimmage {

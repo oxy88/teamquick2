@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import { Left, Text, Right, Icon } from 'native-base'
+import { withNavigation } from 'react-navigation'
 
 class UserMenu extends React.Component {
     render() {
@@ -24,9 +25,12 @@ class UserMenu extends React.Component {
                         <Text>협조적</Text>
                     </View>
                 </View>
-                <Text>본인이 입력한 프로필이에용ㅎㅎㅎ</Text>
+                <Text>{this.props.user.introduction}</Text>
                 <View style={{marginTop: 10, width: "95%", flexDirection:"row", justifyContent: 'space-around', alignItems: 'center'}}>
-                    <TouchableOpacity style={{width: "25%", height: 40, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <TouchableOpacity 
+                        onPress={() => this.props.navigation.navigate('DirectMessage')}
+                        style={{width: "25%", height: 40, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}
+                    >
                         <Text>귓속말</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{width: "25%", height: 40, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -44,4 +48,4 @@ class UserMenu extends React.Component {
     }
 }
 
-export default UserMenu
+export default withNavigation(UserMenu)

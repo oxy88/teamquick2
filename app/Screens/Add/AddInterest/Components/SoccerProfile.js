@@ -50,7 +50,11 @@ class SoccerProfile extends React.Component {
                     <React.Fragment>
                     <H3 style={{margin: 10}}>축구 실력</H3>
                         <View style={{flexDirection: "row"}}>
-                            <Input placeholder="예) 짱잘함" style={{backgroundColor: 'white'}} />
+                            <Input 
+                                placeholder="예) 짱잘함" 
+                                style={{backgroundColor: 'white'}} 
+                                onChangeText={(text) => this.setState({ description: text })}
+                            />
                         </View>
                     <H3 style={{margin: 10}}>역할</H3>
                         <Form>
@@ -140,7 +144,16 @@ mutation createInterestSoccerMutation($description: String, $role: SoccerRole!, 
     ) {
         id
         category
-        description
+        categoryIconUrl
+        firstLine
+        secondLine
+        thirdLine
+        teams {
+            id
+            category
+            name
+            logoUrl
+        }
     }
 }
 `

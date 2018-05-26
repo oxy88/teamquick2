@@ -35,7 +35,7 @@ class TeamMenu extends React.Component {
             <View style={{height: 230, borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
                 <View style={{flexDirection:"row"}}>
                     <Left style={{flexDirection: "row"}}>
-                    <Text style={{borderWidth: 1}}>롤</Text>
+                    <Text style={{borderWidth: 1}}>{this.props.team.category}</Text>
                     <Text style={{borderWidth: 1, marginLeft: 10}}>모집중</Text>
                     </Left>
                     <Right>
@@ -93,8 +93,7 @@ mutation joinTeamMutation($teamId: ID!) {
         name
         logoUrl
         members {
-            id
-            name            
+            id            
         }
     }
 }

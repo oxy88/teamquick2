@@ -1,0 +1,85 @@
+type User {
+  id: ID! @unique
+  name: String @unique
+  introduction: String
+  events: [Event!]! @relation(name: "UserEvents")
+  avatarUrl: String @default(value: "https://cdn3.iconfinder.com/data/icons/black-easy/512/535106-user_512x512.png")
+  interests: [Interest!]! @relation(name: "UserInterests", onDelete: CASCADE)
+  likeTeam: [Team!]! @relation(name: "UserLikeTeams")
+}
+
+type Team {
+  id: ID! @unique
+  category: Category
+  name: String @unique
+  description: String
+  members: [Interest!]! @relation(name: "TeamMembers")
+  logoUrl: String @default(value: "https://d30y9cdsu7xlg0.cloudfront.net/png/14261-200.png")
+  hostScrimmage: Scrimmage @relation(name: "ScrimmageHostTeam")
+  guestScrimmage: Scrimmage @relation(name: "ScrimmageGuestTeam")
+  liked: [User!]! @relation(name: "UserLikeTeams")
+}
+
+type Event {
+  id: ID! @unique
+  name: String
+  iconUrl: String @default(value: "https://d30y9cdsu7xlg0.cloudfront.net/png/404-200.png")
+  category: Category @default(value: ANYTHING)
+  type: EventType @default(value: ETC)
+  startTime: DateTime
+  place: Place @relation(name: "EventPlace", onDelete: CASCADE)
+  owner: User @relation(name: "UserEvents")
+  scrimmage: Scrimmage @relation(name: "EventScrimmage")
+}
+
+type Scrimmage {
+  id: ID! @unique
+  hostTeam: Team @relation(name: "ScrimmageHostTeam")
+  guestTeam: Team @relation(name: "ScrimmageGuestTeam")
+  event: Event @relation(name: "EventScrimmage", onDelete: CASCADE)
+}
+
+type Place {
+  id: ID! @unique
+  description: String
+  lat: Float
+  lng: Float
+  event: Event @relation(name: "EventPlace")
+}
+
+enum Category {
+  LOL
+  PUBG
+  OVERWATCH
+  ETC_GAMES
+  SOCCER
+  BASKET_BALL
+  ETC_SPORTS
+  ANY
+}
+
+enum EventType {
+  TOURNAMENT
+  LEAGUE
+  SCRIMMAGE
+  ETC
+}
+
+type Interest {
+  id: ID! @unique
+  user: User! @relation(name: "UserInterests")
+  teams: [Team!]! @relation(name: "TeamMembers")
+  category: Category
+  categoryIconUrl: String @default(value: "https://image.freepik.com/free-icon/question-mark_318-52837.jpg")
+  firstLine: String
+  secondLine: String
+  thirdLine: String
+  lol: LolProfile
+  pubg: PubgProfile
+  overwatch: OverwatchProfile
+  etcGames: EtcGamesProfile
+  soccer: SoccerProfile
+  basketBall: BasketBallProfile
+  etcSports: EtcSportsProfile
+  any: AnyProfile
+}

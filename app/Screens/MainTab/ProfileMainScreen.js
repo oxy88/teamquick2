@@ -30,17 +30,25 @@ class ProfileMainScreen extends React.Component {
                     return <ErrorScreen />
                 }
 
+                const teams = []
+
+                data.myProfile.interests.map(interest => {
+                    interest.teams.map(team => {
+                        teams.push(team)
+                    })
+                })
+
                 return (
                     <Container>
                     <MainHeader navigation={this.props.navigation}/>
                     <Content>
-                        <ProfileMenu />
+                        <ProfileMenu myProfile={data.myProfile}/>
                     <Tabs scrollWithoutAnimation>
                         <Tab heading="홈">
                             <HomeTab interests={data.myProfile.interests} />
                         </Tab>
                         <Tab heading="소속팀">
-                            <TeamTab teams={data.myProfile.teams} navigation={this.props.navigation} />
+                            <TeamTab teams={teams} navigation={this.props.navigation} />
                         </Tab>
                         <Tab heading="일정">
                             <ScheduleTab />

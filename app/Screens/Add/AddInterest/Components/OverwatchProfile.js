@@ -14,7 +14,8 @@ class OverwatchProfile extends React.Component {
         this.state = {
             name: "",
             overwatchTier: "BRONZE",
-            overwatchRole: "FILL"
+            overwatchRole: "FILL",
+            description: ""
         }
         this.onValueChange = this.onValueChange.bind(this)
     }
@@ -123,13 +124,20 @@ class OverwatchProfile extends React.Component {
                         <Item label="힐러" value="HEAL" />
                         </Picker>
                     </Form>
+                    <H3 style={{margin: 10}}>자유 입력</H3>
+                    <Input 
+                        placeholder="예) 고정 6인팀구함"
+                        onChangeText={(text) => this.setState({ description: text })}
+                        style={{backgroundColor: 'white'}} 
+                    />
                     <Button 
                     onPress={async () => {
                         await createInterestOverwatch({
                             variables: {
                                 name: this.state.name,
                                 tier: this.state.overwatchTier,
-                                role: this.state.overwatchRole
+                                role: this.state.overwatchRole,
+                                description: this.state.description
                             }
                         })
                         this.props.navigation.navigate('MainTab')
@@ -146,15 +154,25 @@ class OverwatchProfile extends React.Component {
 }
 
 const CREATE_INTEREST_OVERWATCH_MUTATION = gql`
-mutation createInterestOverwatchMutation($name: String, $tier: OverwatchTier!, $role: OverwatchRole!) {
+mutation createInterestOverwatchMutation($name: String, $tier: OverwatchTier!, $role: OverwatchRole!, $description: String) {
     createInterestOverwatch(
         name: $name,
         tier: $tier,
-        role: $role
+        role: $role,
+        description: $description
     ) {
         id
         category
-        description
+        categoryIconUrl
+        firstLine
+        secondLine
+        thirdLine
+        teams {
+            id
+            category
+            name
+            logoUrl
+        }
     }
 }
 `

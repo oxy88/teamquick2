@@ -5,6 +5,7 @@ query usersQuery {
     users {
         id
         name
+        avatarUrl
     }
 }
 `

@@ -200,16 +200,14 @@ class AddEventScreen extends React.Component {
                     <Button 
                     onPress={async () => {
                         const { year, month, date, hours, minutes } = this.state.dateTime
-                        console.log(year, month, date, hours, minutes)
                         const fullDate = new Date(year, month, date, hours, minutes).toISOString()
-                        console.log(this.state.name, this.state.eventCategory, this.state.eventType, fullDate, this.state.place.description, this.state.place.lat, this.state.place.lng)
                         await createEvent({
                             variables: {
                                 name: this.state.name,
                                 category: this.state.eventCategory,
                                 type: this.state.eventType,
                                 startTime: fullDate,
-                                description: this.state.place.description,
+                                description: !this.state.place.directDescription ? this.state.place.description : this.state.place.directDescription,
                                 lat: this.state.place.lat,
                                 lng: this.state.place.lng
                             }

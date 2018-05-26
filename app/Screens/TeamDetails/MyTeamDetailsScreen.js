@@ -16,7 +16,7 @@ class MyTeamDetailsScreen extends React.Component {
             <Container>
                 <TeamHeader navigation={this.props.navigation} title={this.props.team.name} />
             <Content>
-                <MyTeamMenu />
+                <MyTeamMenu team={this.props.team}/>
                 <Tabs scrollWithoutAnimation>
                     <Tab heading="홈">
                         <HomeTab 

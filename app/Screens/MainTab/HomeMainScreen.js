@@ -61,7 +61,7 @@ class HomeMainScreen extends React.Component {
                     <TouchableOpacity 
                     onPress={() => this.props.navigation.navigate('IncompleteTeamMatching')}
                     style={{height: 50, borderWidth: 1, margin: 10}}>
-                        <Text>불완전 팀 매칭</Text>
+                        <Text>부분 팀 매칭</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
                     onPress={() => this.props.navigation.navigate('TeamMatching')}
@@ -75,12 +75,12 @@ class HomeMainScreen extends React.Component {
                     </TouchableOpacity>
                     <View style={{flexDirection: "row", justifyContent: 'center'}}>
                     <TouchableOpacity 
-                    onPress={() => this.props.navigation.navigate('FindMyTeamMember')}
+                    onPress={() => this.props.navigation.navigate('RecommendMember')}
                     style={{height: 50, borderWidth: 1, margin: 10}}>
                         <Text>맞춤 팀원 찾기</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
-                    onPress={() => this.props.navigation.navigate('FindMyTeam')}
+                    onPress={() => this.props.navigation.navigate('RecommendTeam')}
                     style={{height: 50, borderWidth: 1, margin: 10}}>
                         <Text>맞춤 팀 찾기</Text>
                     </TouchableOpacity>

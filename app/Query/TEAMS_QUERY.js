@@ -5,11 +5,11 @@ query teamsQuery {
     teams {
         id
         name
+        category
         description
         logoUrl
         members {
             id
-            name
         }
     }
 }

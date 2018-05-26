@@ -6,12 +6,7 @@ query userQuery($id: ID!) {
         id
         name
         avatarUrl
-        teams {
-            id
-            category
-            name
-            logoUrl
-        }
+        introduction
         events {
             id
             name
@@ -19,7 +14,15 @@ query userQuery($id: ID!) {
         interests {
             id
             category
-            description
+            firstLine
+            secondLine
+            thirdLine
+            teams {
+            id
+            category
+            name
+            logoUrl
+            }
         }
     }
 }

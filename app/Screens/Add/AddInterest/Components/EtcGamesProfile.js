@@ -14,7 +14,8 @@ class EtcGamesProfile extends React.Component {
         this.state = {
             gameName: "",
             name: "",
-            stats: ""
+            stats: "",
+            description: ""
         }
         this.onValueChange = this.onValueChange.bind(this)
     }
@@ -71,14 +72,20 @@ class EtcGamesProfile extends React.Component {
                                 style={{backgroundColor: 'white'}} 
                             />
                         </View>
-    
+                    <H3 style={{margin: 10}}>자유 입력</H3>
+                    <Input 
+                        placeholder="예) 아무말이나 쓰면 됨"
+                        onChangeText={(text) => this.setState({ description: text })}
+                        style={{backgroundColor: 'white'}} 
+                    />
                     <Button 
                     onPress={async() => {
                         await createInterestEtcGames({
                             variables: {
                                 gameName: this.state.gameName,
                                 name: this.state.name,
-                                stats: this.state.stats
+                                stats: this.state.stats,
+                                description: this.state.description
                             }
                         })
                         this.props.navigation.navigate('MainTab')
@@ -95,15 +102,25 @@ class EtcGamesProfile extends React.Component {
 }
 
 const CREATE_INTEREST_ETC_GAMES_MUTATION = gql`
-mutation createInterestEtcGamesMutation($gameName: String!, $name: String, $stats: String) {
+mutation createInterestEtcGamesMutation($gameName: String!, $name: String, $stats: String, $description: String) {
     createInterestEtcGames(
         gameName: $gameName
         name: $name
         stats: $stats
+        description: $description
     ) {
         id
         category
-        description
+        categoryIconUrl
+        firstLine
+        secondLine
+        thirdLine
+        teams {
+            id
+            category
+            name
+            logoUrl
+        }
     }
 }
 

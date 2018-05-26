@@ -14,6 +14,11 @@ query eventsQuery {
             lng
         }
         iconUrl
+        scrimmage {
+            hostTeam {
+                name
+            }
+        }
     }
 }
 `

@@ -11,7 +11,7 @@ class UserList extends React.Component {
                 style={{borderWidth: 1, height: 60, margin: 10, flexDirection: "row", alignItems: 'center'}} 
                 key={user.id}
             >
-                <Image source={{ uri: user.avatar_url }} style={{width: 40, height:40}} />
+                <Image source={{ uri: "https://cdn3.iconfinder.com/data/icons/black-easy/512/535106-user_512x512.png" }} style={{width: 40, height:40}} />
                 <View>
                     <Text>{user.name}</Text>
                     <Text>사람 설명</Text>

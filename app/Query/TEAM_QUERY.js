@@ -5,11 +5,11 @@ query teamQuery($id: ID!) {
     team(id: $id) {
         id
         name
+        category
         description
         logoUrl
         members {
             id
-            name
         }
     }
 }

@@ -38,16 +38,16 @@ class UserDetailsScreen extends React.Component {
             }
             return (
             <Container>
-                <UserHeader navigation={this.props.navigation} title={data.user.name}/>
+                <UserHeader navigation={this.props.navigation} user={data.user}/>
             <Content>
-                <UserMenu />
+                <UserMenu user={data.user}/>
                 <Tabs scrollWithoutAnimation>
                     <Tab heading="홈">
                         <HomeTab interests={data.user.interests}/>
                     </Tab>
-                    <Tab heading="소속팀">
+                    {/* <Tab heading="소속팀">
                         <TeamTab teams={data.user.teams} navigation={this.props.navigation}/>
-                    </Tab>
+                    </Tab> */}
                     <Tab heading="일정">
                         <ScheduleTab />
                     </Tab>

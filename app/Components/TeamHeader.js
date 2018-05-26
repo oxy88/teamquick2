@@ -1,6 +1,8 @@
 import React from 'react'
 import { Header, Left, Body, Right, Title, Button, Icon } from 'native-base'
 import PropTypes from 'prop-types'
+import gql from 'graphql-tag'
+import { Mutation } from 'react-apollo'
 
 class TeamHeader extends React.Component {
     render() {
@@ -30,5 +32,39 @@ class TeamHeader extends React.Component {
 TeamHeader.propTypes = {
     navigation: PropTypes.object
 }
+
+const LIKE_TEAM_MUTATION = gql`
+mutation likeTeamMutation($teamId: ID!) {
+    likeTeam(
+        teamId: $teamId
+    ) {
+        id
+        name
+        description
+        logoUrl
+        members {
+            id
+            name
+        }
+    }
+}
+`
+
+const DIS_LIKE_TEAM_MUTATION = gql`
+mutation disLikeTeamMutation($teamId: ID!) {
+    disLikeTeam(
+        teamId: $teamId
+    ) {
+        id
+        name
+        description
+        logoUrl
+        members {
+            id
+            name
+        }
+    }
+}
+`
 
 export default TeamHeader

@@ -1,0 +1,23 @@
+type LolProfile {
+  id: ID! @unique
+  name: String!
+  tier: LolTier!
+  role: LolRole!
+}
+
+enum LolTier {
+    BRONZE
+    SILVER
+    GOLD
+    PLATINUM
+    DIAMOND
+}
+
+enum LolRole {
+    FILL
+    TOP
+    JUNGLE
+    MID
+    ADC
+    SUPPORT
+}

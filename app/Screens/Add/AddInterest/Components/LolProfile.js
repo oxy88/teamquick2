@@ -14,7 +14,8 @@ class LolProfile extends React.Component {
         this.state = {
             name: "",
             lolTier: "BRONZE",
-            lolRole: "FILL"
+            lolRole: "FILL",
+            description: "",
         }
         this.onValueChange = this.onValueChange.bind(this)
     }
@@ -50,6 +51,7 @@ class LolProfile extends React.Component {
                 <H3 style={{margin: 10}}>소환사명</H3>
                     <View style={{flexDirection: "row"}}>
                         <Input 
+                            placeholder="소환사명 입력"
                             onChangeText={(text) => this.setState({ name: text })}
                             style={{backgroundColor: 'white'}} 
                         />
@@ -125,13 +127,20 @@ class LolProfile extends React.Component {
                     <Item label="서포터" value="SUPPORT" />
                     </Picker>
                 </Form>
+                <H3 style={{margin: 10}}>자유 입력</H3>
+                <Input 
+                    placeholder="예) 자유랭 구함 가렌 잘함"
+                    onChangeText={(text) => this.setState({ description: text })}
+                    style={{backgroundColor: 'white'}} 
+                />
                 <Button 
                 onPress={async () => {
                     await createInterestLol({
                         variables: {
                             name: this.state.name,
                             tier: this.state.lolTier,
-                            role: this.state.lolRole
+                            role: this.state.lolRole,
+                            description: this.state.description
                         }
                     })
                     this.props.navigation.navigate('MainTab')
@@ -148,15 +157,25 @@ class LolProfile extends React.Component {
 }
 
 const CREATE_INTEREST_LOL_MUTATION = gql`
-mutation createInterestLolMutation($name: String, $tier: LolTier!, $role: LolRole!){
+mutation createInterestLolMutation($name: String, $tier: LolTier!, $role: LolRole!, $description: String){
     createInterestLol(
         name: $name
         tier: $tier
         role: $role
+        description: $description
     ) {
         id
         category
-        description
+        categoryIconUrl
+        firstLine
+        secondLine
+        thirdLine
+        teams {
+            id
+            category
+            name
+            logoUrl
+        }
     }
 }
 `

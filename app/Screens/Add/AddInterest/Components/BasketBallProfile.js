@@ -92,7 +92,16 @@ mutation createInterestBasketBallMutation($description: String, $role: BasketBal
     ) {
         id
         category
-        description
+        categoryIconUrl
+        firstLine
+        secondLine
+        thirdLine
+        teams {
+            id
+            category
+            name
+            logoUrl
+        }
     }
 }
 `

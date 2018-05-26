@@ -6,9 +6,11 @@ import { Query } from 'react-apollo'
 
 import TeamHeader from '../../Components/TeamHeader'
 import TeamMenu from './Components/TeamMenu'
+import MyTeamMenu from './Components/MyTeamMenu'
 import HomeTab from './Tabs/HomeTab'
 import ScheduleTab from './Tabs/ScheduleTab'
 import HistoryTab from './Tabs/HistoryTab'
+import SettingTab from './Tabs/SettingTab'
 import MyTeamDetailsScreen from './MyTeamDetailsScreen'
 import TeamDetailsScreen from './TeamDetailsScreen'
 
@@ -38,17 +40,38 @@ class TeamDetailsDivider extends React.Component {
                         return <ErrorScreen />
                     }
 
+                    console.log(team)
+
                     const isMyTeam = team.members.find(user => {
                         return user.id === myId
                     })
 
                     return (
-                        <React.Fragment>
-                            {isMyTeam ? 
-                            <MyTeamDetailsScreen team={team} navigation={this.props.navigation}/> :
-                            <TeamDetailsScreen team={team} navigation={this.props.navigation}/>
-                            }
-                        </React.Fragment>
+                        <Container>
+                        <TeamHeader navigation={this.props.navigation} title={team.name}/>
+                        <Content>
+                            {isMyTeam ? <MyTeamMenu team={team} /> : <TeamMenu team={team} />}
+                        <Tabs scrollWithoutAnimation>
+                            <Tab heading="홈">
+                                <HomeTab 
+                                    navigation={this.props.navigation}
+                                    members={team.members}
+                                />
+                            </Tab>
+                            <Tab heading="일정">
+                                <ScheduleTab />
+                            </Tab>
+                            <Tab heading="기록">
+                                <HistoryTab />
+                            </Tab>
+                            {isMyTeam ? (
+                                <Tab heading="관리">
+                                    <SettingTab />
+                                </Tab>
+                            ) : null}
+                            </Tabs>
+                        </Content>
+                        </Container>
                     )
                 }}
                 </Query>

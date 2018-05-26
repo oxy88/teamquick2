@@ -6,12 +6,7 @@ query myProfileQuery {
         id
         name
         avatarUrl
-        teams {
-            id
-            category
-            name
-            logoUrl
-        }
+        introduction
         events {
             id
             name
@@ -19,10 +14,20 @@ query myProfileQuery {
         interests {
             id
             category
-            description
+            categoryIconUrl
+            firstLine
+            secondLine
+            thirdLine
+            teams {
+            id
+            category
+            name
+            logoUrl
+            }
         }
     }
 }
 `
 
 export default MY_PROFILE_QUERY
+

@@ -8,9 +8,8 @@ import AuthLoadingScreen from './AuthLoadingScreen'
 import SearchMainScreen from './Search/SearchMainScreen'
 import SettingsScreen from './Settings/SettingsScreen'
 import AddStack from './Add/AddStack'
-import UserMatchingStack from './MainTab/UserMatching/UserMatchingStack'
-import IncompleteTeamMatchingStack from './MainTab/IncompleteTeamMatching/IncompleteTeamMatchingStack'
-import TeamMatchingStack from './MainTab/TeamMatching/TeamMatchingStack'
+import DirectMessageScreen from './UserDetails/DirectMessageScreen'
+import TeamChatScreen from './TeamDetails/TeamChatScreen'
 
 const AppStack = StackNavigator({
     MainTab: {
@@ -25,18 +24,17 @@ const AppStack = StackNavigator({
             header: null
         }
     },
-    UserMatching: {
-        screen: UserMatchingStack
+    Settings: {
+        screen: SettingsScreen,
     },
-    IncompleteTeamMatching: {
-        screen: IncompleteTeamMatchingStack
-    },
-    TeamMatching: {
-        screen: TeamMatchingStack
-    },
-    Settings: SettingsScreen,
     Add: {
         screen: AddStack
+    },
+    DirectMessage: {
+        screen: DirectMessageScreen
+    },
+    TeamChat: {
+        screen: TeamChatScreen
     }
 }, {
     headerMode: 'none',

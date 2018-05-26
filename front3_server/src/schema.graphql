@@ -26,6 +26,9 @@ type Mutation {
   createInterestBasketBall(description: String, role: BasketBallRole): Interest!
   createInterestEtcSports(sportsName: String!, stats: String, description: String): Interest!
   createInterestAny(topic: String!, description: String): Interest!
+  editIntroduction(introduction: String): User
+  likeTeam(teamId: ID!): Team
+  disLikeTeam(teamId: ID!): Team
   makeToken(userId: ID!): String!
 }
 
@@ -41,4 +44,5 @@ type User {
   events: [Event!]!
   avatarUrl: String
   interests: [Interest!]!
+  introduction: String
 }

@@ -1,0 +1,12 @@
+type PubgProfile {
+  id: ID! @unique
+  name: String!
+  server: PubgServer!
+  rating: Int
+}
+
+enum PubgServer {
+    KAKAO
+    KR
+    AS
+}

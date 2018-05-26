@@ -12,7 +12,7 @@ class UserHeader extends React.Component {
                     </Button>
                 </Left>
                 <Body>
-                    <Title>{this.props.title ? this.props.title : "알 수 없음"}</Title>
+                    <Title>{this.props.user.name ? this.props.user.name : "알 수 없음"}</Title>
                 </Body>
                 <Right>
                     <Button transparent onPress={() => this.props.navigation.navigate('Search')}>

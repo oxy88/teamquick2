@@ -1,21 +1,32 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { Text } from 'native-base'
+import { Query } from 'react-apollo'
+
+import EventList from '../../../Components/Event/EventList'
+
+import EVENTS_QUERY from '../../../Query/EVENTS_QUERY'
 
 class HistoryTab extends React.Component {
     render() {
         return (
-            <React.Fragment>
-            <TouchableOpacity style={{marginHorizontal:10, borderWidth: 1}}>
-                <Text>5/8 18:00 이벤트 제목</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{marginHorizontal:10, borderWidth: 1}}>
-                <Text>5/9 10:00 상대팀 이름</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{marginHorizontal:10, borderWidth: 1}}>
-                <Text>5/10 12:00 이벤트 제목</Text>
-            </TouchableOpacity>
-            </React.Fragment>
+            <Query query={EVENTS_QUERY}>
+            {({ data, loading, error }) => {
+                return (
+                    <React.Fragment>
+                    {data.events.map(event => {
+                        return (
+                            <EventList
+                            key={event.id}
+                            event={event}
+                            navigation={this.props.navigation}
+                        />
+                        )
+                    })}
+                    </React.Fragment>
+                )
+            }}
+            </Query>
         )
     }
 }

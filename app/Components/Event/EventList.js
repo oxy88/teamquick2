@@ -38,12 +38,12 @@ class EventList extends React.Component {
             >
                 <Image source={{ uri: event.iconUrl }} style={{width: 40, height:40}} />
                 <View>
-                    <Text>{event.name}</Text>
+                    <Text>{event.scrimmage ? "연습경기" : event.name}</Text>
                     <Text>{`(${I18n.t(event.category)}) (${I18n.t(event.type)}) ${this.refineDate(event.startTime)}`}</Text>
                     <Text>{this.truncate(event.place.description)}</Text>
                 </View>
             </TouchableOpacity>
-        )
+        ) 
     }
 }
 

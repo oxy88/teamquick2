@@ -14,6 +14,7 @@ class PubgProfile extends React.Component {
         this.state = {
             name: "",
             pubgServer: "KAKAO",
+            description: ""
         }
         this.onValueChange = this.onValueChange.bind(this)
     }
@@ -86,12 +87,19 @@ class PubgProfile extends React.Component {
                         <Item label="아시아" value="AS" />
                         </Picker>
                     </Form>
+                    <H3 style={{margin: 10}}>자유 입력</H3>
+                    <Input 
+                        placeholder="예) 주말 스쿼드구함"
+                        onChangeText={(text) => this.setState({ description: text })}
+                        style={{backgroundColor: 'white'}} 
+                    />
                     <Button 
                     onPress={async () => {
                         await createInterestPubg({
                             variables: {
                                 name: this.state.name,
-                                server: this.state.pubgServer
+                                server: this.state.pubgServer,
+                                description: this.state.description
                             }
                         })
                         this.props.navigation.navigate('MainTab')
@@ -108,14 +116,24 @@ class PubgProfile extends React.Component {
 }
 
 const CREATE_INTEREST_PUBG_MUTATION = gql`
-mutation createInterestPubgMutation($name: String, $server: PubgServer!){
+mutation createInterestPubgMutation($name: String, $server: PubgServer!, $description: String){
     createInterestPubg(
         name: $name
         server: $server
+        description: $description
     ) {
         id
         category
-        description
+        categoryIconUrl
+        firstLine
+        secondLine
+        thirdLine
+        teams {
+            id
+            category
+            name
+            logoUrl
+        }
     }
 }
 `

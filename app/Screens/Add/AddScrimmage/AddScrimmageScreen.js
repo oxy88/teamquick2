@@ -21,11 +21,11 @@ class AddScrimmageScreen extends React.Component {
             eventType: '유형 선택',
             eventOptions: {},
             dateTime: {
-                year: 0,
-                month: 0,
-                date: 0,
-                hours: 0,
-                minutes: 0
+                year: null,
+                month: null,
+                date: null,
+                hours: null,
+                minutes: null
             },
             showDate: false,
             showTime: false,
@@ -96,21 +96,18 @@ class AddScrimmageScreen extends React.Component {
     }
 
     _dateTimeToDate = (fullDate) => {
-        return fullDate.year === 0 || fullDate.month + 1 === 0 || fullDate.date === 0 ? "날짜" : `${fullDate.year}년 ${fullDate.month + 1}월 ${fullDate.date}일`
+        if (fullDate.year === null || fullDate.month === null || fullDate.date === null) {
+            return "날짜"
+        } else {
+            return `${fullDate.year}년 ${fullDate.month + 1}월 ${fullDate.date}일`
+        }
     }
 
     _dateTimeToTime = (fullDate) => {
-        let isAM = true
-        if (fullDate.hours > 12) {
-            fullDate.hours = fullDate.hours - 12
-            isAM = false
+        if (fullDate.hours === null || fullDate.minutes === null) {
+            return "시간"
         }
-
-        if (fullDate.minutes == 0) {
-            fullDate.minutes = "00"
-        }
-
-        return fullDate.hours === 0 || !fullDate.minutes === 0 ? "시간" : `${isAM ? "오전" : "오후"} ${fullDate.hours}:${fullDate.minutes}`
+        return `${fullDate.hours < 12 ? "오전 " + fullDate.hours : "오후 " + (fullDate.hours - 12)}:${fullDate.minutes < 10 ? "0" + fullDate.minutes : fullDate.minutes}`
     }
 
     _selectPlace(place) {
@@ -126,7 +123,6 @@ class AddScrimmageScreen extends React.Component {
     }
 
     render() {
-        console.log(this.state.place.directDescription)
         return (
             <Mutation mutation={CREATE_SCRIMMAGE_MUTATION}>
             {( createScrimmage, { loading: loadingCreateScrimmage, error: errorCreateScrimmage }) => (
@@ -164,7 +160,7 @@ class AddScrimmageScreen extends React.Component {
                             selectedValue={this.state.selectedTeam}
                             onValueChange={(value) => this.onValueChange("selectedTeam", value)}
                             >
-                            {data.myProfile.teams.map(team => {
+                            {[{id: 0, name: 'hi'}, {id: 1, name: 'hello'}].map(team => {
                                 return <Picker.Item key={team.id} label={team.name} value={team.id} />
                             })}
                             </Picker>
@@ -233,8 +229,19 @@ class AddScrimmageScreen extends React.Component {
                         </TouchableOpacity>
                         <Button 
                         onPress={async() => {
+                            if (!this.state.selectedTeam || this.state.dateTime.year === null || this.state.dateTime.hours === null) {
+                                alert('팀과 시간을 선택해 주세요')
+                                return
+                            }
+                            const { year, month, date, hours, minutes } = this.state.dateTime
+                            const fullDate = new Date(year, month, date, hours, minutes).toISOString()
                             await createScrimmage({
                                 variables: {
+                                    hostTeamId: this.state.selectedTeam,
+                                    startTime: fullDate,
+                                    description: !this.state.place.directDescription ? this.state.place.description : this.state.place.directDescription,
+                                    lat: this.state.place.lat,
+                                    lng: this.state.place.lng
                                 }
                             })
                             this.props.navigation.navigate('MainTab')

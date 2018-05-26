@@ -92,7 +92,16 @@ mutation createInterestEtcSportsMutation($sportsName: String!, $stats: String, $
     ) {
         id
         category
-        description
+        categoryIconUrl
+        firstLine
+        secondLine
+        thirdLine
+        teams {
+            id
+            category
+            name
+            logoUrl
+        }
     }
 }
 `

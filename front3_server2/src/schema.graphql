@@ -1,0 +1,47 @@
+# import Team, Event, Category, Interest, EventType, LolTier, LolRole, PubgServer, OverwatchTier, OverwatchRole, SoccerRole, SoccerPosition, BasketBallRole, Place from "./generated/prisma.graphql"
+
+type Query {
+  user(id: ID!): User
+  users: [User!]!
+  event(id: ID!): Event
+  events: [Event!]!
+  team(id: ID!): Team
+  teams: [Team!]!
+  myName: String!
+  myId: ID!
+  myProfile: User
+}
+
+type Mutation {
+  login(name: String!): AuthPayload!
+  createTeam(teamName: String!, interestId: ID!, category: Category!, description: String!): Team!
+  joinTeam(teamId: ID!, interestId: ID!): Team!
+  createEvent(name: String, category: Category!, type: EventType!, startTime: DateTime, description: String, lat: Float, lng: Float): Event
+  createScrimmage(hostTeamId: ID!, startTime: DateTime, description: String, lat: Float, lng: Float): Event!
+  createInterestLol(name: String, tier: LolTier!, role: LolRole!, description: String): Interest!
+  createInterestPubg(name: String, server: PubgServer!, description: String): Interest!
+  createInterestOverwatch(name: String, tier: OverwatchTier!, role: OverwatchRole!, description: String): Interest!
+  createInterestEtcGames(gameName: String!, name: String, stats: String, description: String): Interest!
+  createInterestSoccer(description: String, role: SoccerRole, position: SoccerPosition, description: String): Interest!
+  createInterestBasketBall(description: String, role: BasketBallRole, description: String): Interest!
+  createInterestEtcSports(sportsName: String!, stats: String, description: String, description: String): Interest!
+  createInterestAny(topic: String!, description: String, description: String): Interest!
+  editIntroduction(introduction: String): User
+  likeTeam(teamId: ID!): Team
+  disLikeTeam(teamId: ID!): Team
+  makeToken(userId: ID!): String!
+}
+
+type AuthPayload {
+  token: String!
+  userId: ID!
+}
+
+type User {
+  id: ID!
+  name: String!
+  events: [Event!]!
+  avatarUrl: String
+  interests: [Interest!]!
+  introduction: String
+}

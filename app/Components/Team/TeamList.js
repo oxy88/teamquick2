@@ -15,7 +15,7 @@ class TeamList extends React.Component {
                 <View>
                     <Text>{team.name}</Text>
                     <Text>{team.description}</Text>
-                    <Text>팀 설명2</Text>
+                    <Text>{team.category}</Text>
                 </View>
             </TouchableOpacity>
         )
